@@ -1,0 +1,1 @@
+# ssi-authority-schema-registry
