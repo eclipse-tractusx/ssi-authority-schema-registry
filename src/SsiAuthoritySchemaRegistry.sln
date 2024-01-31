@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{CD0CFEEC-AE1A-4861-A9DA-1A6985271A2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "issuer", "issuer", "{F4C71A62-F592-42D1-981E-253B3C5F80D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.Entities", "database\SsiAuthoritySchemaRegistry.Entities\SsiAuthoritySchemaRegistry.Entities.csproj", "{FA3B20E3-D396-467E-A05C-B16808055B33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.Migrations", "database\SsiAuthoritySchemaRegistry.Migrations\SsiAuthoritySchemaRegistry.Migrations.csproj", "{F68BA7A9-AD67-4E0B-B859-1505671304E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.Service", "registry\SsiAuthoritySchemaRegistry.Service\SsiAuthoritySchemaRegistry.Service.csproj", "{1AA22A40-802C-407B-AABF-E250931E4673}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA3B20E3-D396-467E-A05C-B16808055B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3B20E3-D396-467E-A05C-B16808055B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3B20E3-D396-467E-A05C-B16808055B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3B20E3-D396-467E-A05C-B16808055B33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F68BA7A9-AD67-4E0B-B859-1505671304E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F68BA7A9-AD67-4E0B-B859-1505671304E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F68BA7A9-AD67-4E0B-B859-1505671304E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F68BA7A9-AD67-4E0B-B859-1505671304E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA22A40-802C-407B-AABF-E250931E4673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA22A40-802C-407B-AABF-E250931E4673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA22A40-802C-407B-AABF-E250931E4673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA22A40-802C-407B-AABF-E250931E4673}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FA3B20E3-D396-467E-A05C-B16808055B33} = {CD0CFEEC-AE1A-4861-A9DA-1A6985271A2C}
+		{F68BA7A9-AD67-4E0B-B859-1505671304E9} = {CD0CFEEC-AE1A-4861-A9DA-1A6985271A2C}
+		{1AA22A40-802C-407B-AABF-E250931E4673} = {F4C71A62-F592-42D1-981E-253B3C5F80D6}
+	EndGlobalSection
+EndGlobal
