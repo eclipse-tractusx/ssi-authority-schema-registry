@@ -17,25 +17,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Enums;
+using System.Text.Json.Serialization;
 
-namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities;
+namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Models;
 
-public class CredentialType
-{
-    private CredentialType()
-    {
-        Label = null!;
-    }
-
-    public CredentialType(CredentialTypeId typeId)
-    {
-        Id = typeId;
-        Label = typeId.ToString();
-    }
-
-    public CredentialTypeId Id { get; init; }
-    public string Label { get; init; }
-
-    public ICollection<Credential> Credentials { get; private set; } = new HashSet<Credential>();
-}
+public record CredentialData(
+    [property: JsonPropertyName("credentialName")] string CredentialName,
+    [property: JsonPropertyName("credential")] string Credential,
+    [property: JsonPropertyName("authorities")] IEnumerable<string> Authorities
+);

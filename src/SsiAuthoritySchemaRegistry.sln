@@ -2,13 +2,21 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{CD0CFEEC-AE1A-4861-A9DA-1A6985271A2C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "issuer", "issuer", "{F4C71A62-F592-42D1-981E-253B3C5F80D6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "registry", "registry", "{F4C71A62-F592-42D1-981E-253B3C5F80D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.Entities", "database\SsiAuthoritySchemaRegistry.Entities\SsiAuthoritySchemaRegistry.Entities.csproj", "{FA3B20E3-D396-467E-A05C-B16808055B33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.Migrations", "database\SsiAuthoritySchemaRegistry.Migrations\SsiAuthoritySchemaRegistry.Migrations.csproj", "{F68BA7A9-AD67-4E0B-B859-1505671304E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.Service", "registry\SsiAuthoritySchemaRegistry.Service\SsiAuthoritySchemaRegistry.Service.csproj", "{1AA22A40-802C-407B-AABF-E250931E4673}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.DbAccess", "database\SsiAuthoritySchemaRegistry.DbAccess\SsiAuthoritySchemaRegistry.DbAccess.csproj", "{F52F0D32-5BDD-499F-8CA2-A1FE5867B379}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7B57B5BD-0755-455F-AD2F-A9105E6EC73F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.DbAccess.Tests", "..\tests\database\SsiAuthoritySchemaRegistry.DbAccess.Tests\SsiAuthoritySchemaRegistry.DbAccess.Tests.csproj", "{F9055FD2-A73B-4D85-93EE-864CCA4725AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsiAuthoritySchemaRegistry.Service.Tests", "..\tests\registry\SsiAuthoritySchemaRegistry.Service.Tests\SsiAuthoritySchemaRegistry.Service.Tests.csproj", "{C044E006-51EF-4603-BFC2-D2937F841B77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +36,25 @@ Global
 		{1AA22A40-802C-407B-AABF-E250931E4673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AA22A40-802C-407B-AABF-E250931E4673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AA22A40-802C-407B-AABF-E250931E4673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52F0D32-5BDD-499F-8CA2-A1FE5867B379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52F0D32-5BDD-499F-8CA2-A1FE5867B379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52F0D32-5BDD-499F-8CA2-A1FE5867B379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52F0D32-5BDD-499F-8CA2-A1FE5867B379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9055FD2-A73B-4D85-93EE-864CCA4725AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9055FD2-A73B-4D85-93EE-864CCA4725AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9055FD2-A73B-4D85-93EE-864CCA4725AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9055FD2-A73B-4D85-93EE-864CCA4725AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C044E006-51EF-4603-BFC2-D2937F841B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C044E006-51EF-4603-BFC2-D2937F841B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C044E006-51EF-4603-BFC2-D2937F841B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C044E006-51EF-4603-BFC2-D2937F841B77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FA3B20E3-D396-467E-A05C-B16808055B33} = {CD0CFEEC-AE1A-4861-A9DA-1A6985271A2C}
 		{F68BA7A9-AD67-4E0B-B859-1505671304E9} = {CD0CFEEC-AE1A-4861-A9DA-1A6985271A2C}
 		{1AA22A40-802C-407B-AABF-E250931E4673} = {F4C71A62-F592-42D1-981E-253B3C5F80D6}
+		{F52F0D32-5BDD-499F-8CA2-A1FE5867B379} = {CD0CFEEC-AE1A-4861-A9DA-1A6985271A2C}
+		{F9055FD2-A73B-4D85-93EE-864CCA4725AC} = {7B57B5BD-0755-455F-AD2F-A9105E6EC73F}
+		{C044E006-51EF-4603-BFC2-D2937F841B77} = {7B57B5BD-0755-455F-AD2F-A9105E6EC73F}
 	EndGlobalSection
 EndGlobal

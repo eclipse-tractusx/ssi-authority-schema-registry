@@ -33,6 +33,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JsonSchema.Net" Version="7.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
+    <PackageReference Include="Org.Eclipse.TractusX.Portal.Backend.Framework.Web" Version="2.0.0" />
+    <PackageReference Include="System.Json" Version="4.7.1" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="../../../LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -48,6 +58,11 @@
     <SonarQubeSetting Include="sonar.coverage.exclusions">
       <Value>Program.cs</Value>
     </SonarQubeSetting>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\database\SsiAuthoritySchemaRegistry.DbAccess\SsiAuthoritySchemaRegistry.DbAccess.csproj" />
+    <ProjectReference Include="..\..\database\SsiAuthoritySchemaRegistry.Entities\SsiAuthoritySchemaRegistry.Entities.csproj" />
   </ItemGroup>
 
 </Project>
