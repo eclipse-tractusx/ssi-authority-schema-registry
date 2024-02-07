@@ -31,7 +31,7 @@ using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities;
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Migrations.Migrations
 {
     [DbContext(typeof(RegistryContext))]
-    [Migration("20240131122429_0.1.0-rc1")]
+    [Migration("20240305100130_0.1.0-rc.1")]
     partial class _010rc1
     {
         /// <inheritdoc />
@@ -41,7 +41,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Migrations.Migrations
             modelBuilder
                 .HasDefaultSchema("ssi-authority-schema-registry")
                 .UseCollation("en_US.utf8")
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "7.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -159,7 +159,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Migrations.Migrations
                         .WithMany("CredentialAuthorities")
                         .HasForeignKey("Bpn")
                         .IsRequired()
-                        .HasConstraintName("fk_credential_authorities_authorities_bpn");
+                        .HasConstraintName("fk_credential_authorities_authorities_authority_temp_id");
 
                     b.HasOne("Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities.Credential", "Credential")
                         .WithMany("Authorities")

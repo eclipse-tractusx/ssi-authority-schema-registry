@@ -17,5 +17,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-var builder = Host.CreateDefaultBuilder().Build();
-builder.Run();
+using Org.Eclipse.TractusX.Portal.Backend.Framework.Web;
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.DependencyInjection;
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Controllers;
+using System.Text.Json.Serialization;
+
+const string Version = "v1";
+
+WebApplicationBuildRunner
+    .BuildAndRunWebApplication<Program>(args, "registry", Version, ".Registry",
+        builder =>
+        {
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddRegistryRepositories(builder.Configuration);
+            builder.Services.ConfigureHttpJsonOptions(options =>
+            {
+                options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+            builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+        },
+        (app, _) =>
+        {
+            app.MapGroup("/api")
+                .WithOpenApi()
+                .MapRegistryApi()
+                .MapSchemaApi();
+        });

@@ -21,8 +21,10 @@ using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Enums;
 
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities;
 
-public class CredentialType()
+public class CredentialType
 {
+    private CredentialType() { }
+
     public CredentialType(CredentialTypeId typeId)
         : this()
     {

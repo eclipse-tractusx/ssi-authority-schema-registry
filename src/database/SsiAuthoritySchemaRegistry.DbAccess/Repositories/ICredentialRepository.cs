@@ -17,23 +17,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Models;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Enums;
 
-namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities;
+namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Repositories;
 
-public class Credential
+public interface ICredentialRepository
 {
-    public Credential(Guid id, CredentialTypeId typeId, string name)
-    {
-        Id = id;
-        TypeId = typeId;
-        Name = name;
-    }
-
-    public Guid Id { get; set; }
-    public CredentialTypeId TypeId { get; set; }
-    public string Name { get; set; }
-
-    public ICollection<CredentialAuthority> Authorities { get; private set; } = new HashSet<CredentialAuthority>();
-    public virtual CredentialType? Type { get; private set; }
+    IAsyncEnumerable<CredentialData> GetCredentials(string? bpnl, CredentialTypeId? credentialTypeId);
 }

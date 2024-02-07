@@ -18,7 +18,6 @@
  ********************************************************************************/
 
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 #nullable disable
 
@@ -93,7 +92,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Migrations.Migrations
                 {
                     table.PrimaryKey("pk_credential_authorities", x => new { x.credential_id, x.bpn });
                     table.ForeignKey(
-                        name: "fk_credential_authorities_authorities_bpn",
+                        name: "fk_credential_authorities_authorities_authority_temp_id",
                         column: x => x.bpn,
                         principalSchema: "ssi-authority-schema-registry",
                         principalTable: "authorities",

@@ -22,7 +22,7 @@
   <PropertyGroup>
     <AssemblyName>Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service</AssemblyName>
     <RootNamespace>Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service</RootNamespace>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -31,6 +31,16 @@
     <NoWarn>CS1591</NoWarn>
     <UserSecretsId>0e157b48-9f59-4c9b-b8fc-40ed582cdcf0</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonSchema.Net" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
+    <PackageReference Include="Org.Eclipse.TractusX.Portal.Backend.Framework.Web" Version="1.1.0" />
+    <PackageReference Include="System.Json" Version="4.7.1" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="../../../LICENSE">
@@ -48,6 +58,11 @@
     <SonarQubeSetting Include="sonar.coverage.exclusions">
       <Value>Program.cs</Value>
     </SonarQubeSetting>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\database\SsiAuthoritySchemaRegistry.DbAccess\SsiAuthoritySchemaRegistry.DbAccess.csproj" />
+    <ProjectReference Include="..\..\database\SsiAuthoritySchemaRegistry.Entities\SsiAuthoritySchemaRegistry.Entities.csproj" />
   </ItemGroup>
 
 </Project>

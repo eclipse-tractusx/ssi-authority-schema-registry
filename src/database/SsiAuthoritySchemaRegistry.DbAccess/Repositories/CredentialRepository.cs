@@ -17,23 +17,27 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+using Microsoft.EntityFrameworkCore;
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Models;
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Enums;
 
-namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities;
+namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Repositories;
 
-public class Credential
+public class CredentialRepository : ICredentialRepository
 {
-    public Credential(Guid id, CredentialTypeId typeId, string name)
+    private readonly RegistryContext _dbContext;
+
+    public CredentialRepository(RegistryContext dbContext)
     {
-        Id = id;
-        TypeId = typeId;
-        Name = name;
+        _dbContext = dbContext;
     }
 
-    public Guid Id { get; set; }
-    public CredentialTypeId TypeId { get; set; }
-    public string Name { get; set; }
-
-    public ICollection<CredentialAuthority> Authorities { get; private set; } = new HashSet<CredentialAuthority>();
-    public virtual CredentialType? Type { get; private set; }
+    public IAsyncEnumerable<CredentialData> GetCredentials(string? bpnl, CredentialTypeId? credentialTypeId) =>
+        _dbContext.Credentials
+            .Where(c =>
+                (bpnl == null || c.Authorities.Select(a => a.Bpn).Contains(bpnl)) &&
+                (credentialTypeId == null || c.TypeId == credentialTypeId))
+            .Select(c => new CredentialData(c.Type!.Label, c.Name, c.Authorities.Select(a => a.Bpn)))
+            .AsAsyncEnumerable();
 }

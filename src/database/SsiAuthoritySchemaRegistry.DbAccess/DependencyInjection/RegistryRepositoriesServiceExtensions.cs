@@ -17,23 +17,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Enums;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities;
+namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.DependencyInjection;
 
-public class Credential
+public static class RegistryRepositoriesServiceExtensions
 {
-    public Credential(Guid id, CredentialTypeId typeId, string name)
+    [ExcludeFromCodeCoverage]
+    public static IServiceCollection AddRegistryRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-        Id = id;
-        TypeId = typeId;
-        Name = name;
+        services
+            .AddDbContext<RegistryContext>(o => o
+                .UseNpgsql(configuration.GetConnectionString("RegistryDb")))
+            .AddScoped<IRegistryRepositories, RegistryRepositories>()
+            .AddHealthChecks()
+            .AddDbContextCheck<RegistryContext>("RegistryContext", tags: new[] { "registrydb" });
+        return services;
     }
-
-    public Guid Id { get; set; }
-    public CredentialTypeId TypeId { get; set; }
-    public string Name { get; set; }
-
-    public ICollection<CredentialAuthority> Authorities { get; private set; } = new HashSet<CredentialAuthority>();
-    public virtual CredentialType? Type { get; private set; }
 }

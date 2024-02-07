@@ -22,14 +22,14 @@
     <PropertyGroup>
         <AssemblyName>Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities</AssemblyName>
         <RootNamespace>Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities</RootNamespace>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+      <PackageReference Include="EFCore.NamingConventions" Version="7.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.16" />
     </ItemGroup>
 
 </Project>
