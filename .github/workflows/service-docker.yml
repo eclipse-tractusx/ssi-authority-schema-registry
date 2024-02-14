@@ -17,18 +17,17 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-name: SsiAuthoritySchemaRegistry-Migrations
+name: Service
 
-on: 
+on:
   push:
     paths:
       # service and transitive paths
-      - 'src/database/SsiAuthoritySchemaRegistry.Migrations/**'
-      - 'src/database/SsiAuthoritySchemaRegistry.Entities/**'
+      - 'src/**'
       # workflow file
-      - '.github/workflows/ssi-authority-schema-registry-migrations.yml'
+      - '.github/workflows/ssi-authority-schema-registry-service.yml'
       # dockerfile
-      - 'docker/Dockerfile-ssi-authority-schema-registry-migrations'
+      - 'docker/Dockerfile-ssi-authority-schema-registry-service'
 
     branches:
       - 'dev'
@@ -36,7 +35,7 @@ on:
 
 env:
   IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "ssi-authority-schema-registry-migrations"
+  IMAGE_NAME: "ssi-authority-schema-registry-service"
 
 jobs:
   build-and-push-image:
@@ -74,7 +73,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: docker/Dockerfile-ssi-authority-schema-registry-migrations
+          file: docker/Dockerfile-ssi-authority-schema-registry-service
           platforms: linux/amd64, linux/arm64
           pull: true
           push: ${{ github.event_name != 'pull_request' }}
@@ -89,4 +88,4 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          readme-filepath: "./docker/notice-ssi-authority-schema-registry-migrations.md"
+          readme-filepath: "./docker/notice-ssi-authority-schema-registry-service.md"
