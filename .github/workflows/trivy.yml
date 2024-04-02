@@ -70,7 +70,7 @@ jobs:
         with:
           sarif_file: "trivy-results1.sarif"
 
-  analyze-policy-hub-service:
+  analyze-service:
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -93,16 +93,16 @@ jobs:
           # Path to Docker image
           image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}-service:latest"
           format: "sarif"
-          output: "trivy-results3.sarif"
+          output: "trivy-results2.sarif"
           vuln-type: "os,library"
 
       - name: Upload Trivy scan results to GitHub Security tab
         if: always()
         uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3.24.9
         with:
-          sarif_file: "trivy-results3.sarif"
+          sarif_file: "trivy-results2.sarif"
 
-  analyze-policy-hub-migrations:
+  analyze-migrations:
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -125,11 +125,11 @@ jobs:
           # Path to Docker image
           image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}-migrations:latest"
           format: "sarif"
-          output: "trivy-results9.sarif"
+          output: "trivy-results3.sarif"
           vuln-type: "os,library"
 
       - name: Upload Trivy scan results to GitHub Security tab
         if: always()
         uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3.24.9
         with:
-          sarif_file: "trivy-results9.sarif"
+          sarif_file: "trivy-results3.sarif"
