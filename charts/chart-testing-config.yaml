@@ -17,21 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
-
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine-amd64 AS publish
-WORKDIR /
-COPY LICENSE NOTICE.md DEPENDENCIES /
-COPY src/ src/
-WORKDIR /src/registry/SsiAuthoritySchemaRegistry.Service
-RUN dotnet publish "SsiAuthoritySchemaRegistry.Service.csproj" -c Release -o /app/publish
-
-FROM base AS final
-ENV COMPlus_EnableDiagnostics=0
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENV ASPNETCORE_URLS http://+:8080
-EXPOSE 8080
-RUN chown -R 1000:3000 /app
-USER 1000:3000
-ENTRYPOINT ["dotnet", "Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.dll"]
+validate-maintainers: false
+chart-repos:
+  - bitnami=https://charts.bitnami.com/bitnami
+  - tractusx-dev=https://eclipse-tractusx.github.io/charts/dev

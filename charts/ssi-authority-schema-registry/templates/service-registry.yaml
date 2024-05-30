@@ -17,21 +17,17 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
-
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine-amd64 AS publish
-WORKDIR /
-COPY LICENSE NOTICE.md DEPENDENCIES /
-COPY src/ src/
-WORKDIR /src/registry/SsiAuthoritySchemaRegistry.Service
-RUN dotnet publish "SsiAuthoritySchemaRegistry.Service.csproj" -c Release -o /app/publish
-
-FROM base AS final
-ENV COMPlus_EnableDiagnostics=0
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENV ASPNETCORE_URLS http://+:8080
-EXPOSE 8080
-RUN chown -R 1000:3000 /app
-USER 1000:3000
-ENTRYPOINT ["dotnet", "Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.dll"]
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "registry.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "registry.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: {{ .Values.portService }}
+    targetPort: {{ .Values.portContainer }}
+  selector:
+    {{- include "registry.selectorLabels" . | nindent 4 }}
