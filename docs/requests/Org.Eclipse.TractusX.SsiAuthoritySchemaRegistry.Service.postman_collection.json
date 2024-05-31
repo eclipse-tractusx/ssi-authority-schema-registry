@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "f5541abb-034f-4088-ad96-848e51ef8e50",
+		"name": "Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2223943"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "registry",
+					"item": [
+						{
+							"name": "credentials",
+							"item": [
+								{
+									"name": "Gets all credentials with optional filter posibilities - Without Filter",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/registry/credentials",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"registry",
+												"credentials"
+											]
+										},
+										"description": "Example: GET: api/registry/credentials"
+									},
+									"response": []
+								},
+								{
+									"name": "Gets all credentials with optional filter posibilities - With BPN Filter",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/registry/credentials?bpnl=BPNL00000003CRHL",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"registry",
+												"credentials"
+											],
+											"query": [
+												{
+													"key": "bpnl",
+													"value": "BPNL00000003CRHL"
+												}
+											]
+										},
+										"description": "Example: GET: api/registry/credentials"
+									},
+									"response": []
+								},
+								{
+									"name": "Gets all credentials with optional filter posibilities - With Credential Filter",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/registry/credentials?credentialTypeId=Framework",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"registry",
+												"credentials"
+											],
+											"query": [
+												{
+													"key": "credentialTypeId",
+													"value": "Framework"
+												}
+											]
+										},
+										"description": "Example: GET: api/registry/credentials"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "schema",
+					"item": [
+						{
+							"name": "validate",
+							"item": [
+								{
+									"name": "Gets all credentials with optional filter posibilities - With Valid Schema",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://w3id.org/security/suites/jws-2020/v1\",\n        \"https://raw.githubusercontent.com/catenax-ng/product-coreschemas/main/businessPartnerData\"\n    ],\n    \"id\": \"6b74cd89-6c25-4e3c-9fb7-3ee15c803afc\",\n    \"issuer\": \"test\",\n    \"type\": [\n        \"VerifiableCredential\",\n        \"MembershipCredential\"\n    ],\n    \"issuanceDate\": \"2024-05-29T01:01:01Z\",\n    \"expirationDate\": \"2024-12-31T23:59:59Z\",\n    \"credentialSubject\": {\n        \"id\": \"6b74cd89-6c25-4e3c-9fb7-3ee15c803afc\",\n        \"holderIdentifier\": \"Test\",\n        \"memberOf\": \"catena-x\"\n    }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/schema/validate?schemaType=MembershipCredential",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"schema",
+												"validate"
+											],
+											"query": [
+												{
+													"key": "schemaType",
+													"value": "MembershipCredential",
+													"description": "(Required) The type of the schema that should be validated"
+												}
+											]
+										},
+										"description": "Example: POST: api/schema/validate"
+									},
+									"response": []
+								},
+								{
+									"name": "Gets all credentials with optional filter posibilities - With Invalid Schema",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"test\": \"invalid\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/schema/validate?schemaType=MembershipCredential",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"schema",
+												"validate"
+											],
+											"query": [
+												{
+													"key": "schemaType",
+													"value": "MembershipCredential",
+													"description": "(Required) The type of the schema that should be validated"
+												}
+											]
+										},
+										"description": "Example: POST: api/schema/validate"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}
