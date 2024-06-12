@@ -1,5 +1,5 @@
 ###############################################################
-# Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -23,7 +23,7 @@ on:
   push:
     paths:
       - 'charts/ssi-authority-schema-registry/**'
-    branches: [main, dev, release-candidate]
+    branches: [main]
   pull_request:
     paths:
       - 'charts/ssi-authority-schema-registry/**'
@@ -36,9 +36,9 @@ on:
         required: false
         type: string
       upgrade_from:
-        description: 'policyhub chart version to upgrade from'
+        description: 'chart version to upgrade from'
         # tbd
-        default: '0.1.0-rc.2'
+        default: 'tbd'
         required: false
         type: string
 
@@ -62,19 +62,19 @@ jobs:
 
       - name: Build migration image
         id: build-migration-image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: .
-          file: docker/Dockerfile-ssi-authority-schema-registry-migrations
+          file: ./docker/Dockerfile-ssi-asr-migrations
           push: true
           tags: kind-registry:5000/ssi-authority-schema-registry-migrations:testing
 
       - name: Build service image
         id: build-service-image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: .
-          file: docker/Dockerfile-ssi-authority-schema-registry-service
+          file: ./docker/Dockerfile-ssi-asr-service
           push: true
           tags: kind-registry:5000/ssi-authority-schema-registry-service:testing
   
@@ -102,18 +102,18 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --validate-maintainers=false --check-version-increment=false --target-branch ${{ github.event.repository.default_branch }}
 
-      - name: Run service chart-testing (install)
-        run: ct install --charts charts/ssi-authority-schema-registry --config charts/chart-testing-config.yaml --helm-extra-set-args "--set=policyhub.image=kind-registry:5000/ssi-authority-schema-registry-service:testing --set=policyhubmigrations.image=kind-registry:5000/ssi-authority-schema-registry-migrations:testing"
+      - name: Run chart-testing (install)
+        run: ct install --charts charts/ssi-authority-schema-registry --config charts/chart-testing-config.yaml --helm-extra-set-args "--set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing"
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
-      # TODO: re-add the step after the first version release  
+      # TODO: uncomment the step after the first stable release
       # Upgrade the released chart version with the locally available chart
       # default value for event_name != workflow_dispatch
       # - name: Run helm upgrade
       #   run: |
       #     helm repo add bitnami https://charts.bitnami.com/bitnami
       #     helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-      #     helm install ssi-authority-schema-registry tractusx-dev/ssi-authority-schema-registry --version ${{ github.event.inputs.upgrade_from || '0.1.0-rc.2' }} --namespace upgrade --create-namespace
-      #     helm dependency update charts/ssi-authority-schema-registry
-      #     helm upgrade ssi-authority-schema-registry charts/ssi-authority-schema-registry --set policyhub.image=kind-registry:5000/ssi-authority-schema-registry-service:testing --set=policyhubmigrations.image=kind-registry:5000/ssi-authority-schema-registry-migrations:testing --namespace upgrade
+      #     helm install ssi-asr tractusx-dev/ssi-authority-schema-registry --version ${{ github.event.inputs.upgrade_from || '1.0.0' }} --namespace upgrade --create-namespace
+      #     helm dependency update charts/ssi-asr
+      #     helm upgrade ssi-asr charts/ssi-asr --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing --namespace upgrade
       #   if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'

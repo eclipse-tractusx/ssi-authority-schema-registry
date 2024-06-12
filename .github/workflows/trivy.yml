@@ -24,7 +24,7 @@ name: "Trivy Stable"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   # pull_request:
   # The branches below must be a subset of the branches above
   # branches: [ main, master ]
@@ -39,7 +39,6 @@ on:
 
 env:
   IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "ssi-authority-schema-registry"
 
 jobs:
   analyze-config:
@@ -91,7 +90,7 @@ jobs:
         uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d # v0.18.0
         with:
           # Path to Docker image
-          image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}-service:latest"
+          image-ref: "${{ env.IMAGE_NAMESPACE }}/ssi-authority-schema-registry-service:latest"
           format: "sarif"
           output: "trivy-results2.sarif"
           vuln-type: "os,library"
@@ -123,7 +122,7 @@ jobs:
         uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d # v0.18.0
         with:
           # Path to Docker image
-          image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}-migrations:latest"
+          image-ref: "${{ env.IMAGE_NAMESPACE }}/ssi-authority-schema-registry-migrations:latest"
           format: "sarif"
           output: "trivy-results3.sarif"
           vuln-type: "os,library"
