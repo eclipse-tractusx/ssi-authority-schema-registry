@@ -123,8 +123,8 @@ externalDatabase:
   database: "asr"
   # -- Password for the non-root username (default 'asr'). Secret-key 'password'.
   password: ""
-  # -- Secret containing the password non-root username, (default 'asr').
-  existingSecret: "asr-external-db"
+  # -- Existing secret containing the password non-root username.
+  existingSecret: ""
 
 # -- Provide details about centralidp (CX IAM) Keycloak instance.
 centralidp:
