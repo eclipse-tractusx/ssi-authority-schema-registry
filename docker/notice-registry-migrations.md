@@ -1,6 +1,6 @@
 ## Notice for Docker image
 
-DockerHub: [https://hub.docker.com/r/tractusx/ssi-authority-schema-registry](https://hub.docker.com/r/tractusx/ssi-authority-schema-registry-migrations)
+DockerHub: [https://hub.docker.com/r/tractusx/ssi-authority-schema-registry-migrations](https://hub.docker.com/r/tractusx/ssi-authority-schema-registry-migrations)
 
 Eclipse Tractus-X product(s) installed within the image:
 
