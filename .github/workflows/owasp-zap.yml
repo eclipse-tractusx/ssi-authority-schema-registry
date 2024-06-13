@@ -98,7 +98,7 @@ jobs:
           echo "-> IP: $IP_ADDR"
           echo "IP_ADDR=$IP_ADDR" >> $GITHUB_ENV
 
-          POD_NAME=$(kubectl get pods --namespace apps -l "app.kubernetes.io/name=ssi-authority-schema-registry,app.kubernetes.io/instance=testing" -o jsonpath="{.items[0].metadata.name}")
+          POD_NAME=$(kubectl get pods --namespace apps -l "app.kubernetes.io/name=ssi-asr,app.kubernetes.io/instance=testing" -o jsonpath="{.items[0].metadata.name}")
           CONTAINER_PORT=$(kubectl get pod --namespace apps $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
 
           echo "Port-forwarding 0.0.0.0:8080 to $POD_NAME:$CONTAINER_PORT..."
