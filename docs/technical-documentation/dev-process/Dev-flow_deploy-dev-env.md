@@ -7,7 +7,7 @@ flowchart LR
     end
     subgraph eclipse-tractusx
         direction LR
-        D -- PR* to dev*--> SASR(ssi-authority-schema-registry**)
+        D -- PR* to main*--> SASR(ssi-authority-schema-registry**)
         click SCI "https://github.com/eclipse-tractusx/ssi-authority-schema-registry"
     end
     subgraph Argo CD - sync to k8s cluster
