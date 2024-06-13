@@ -89,7 +89,7 @@ jobs:
           helm dependency build
 
       - name: Install the chart on KinD cluster
-        run: helm install testing -n apps --create-namespace --wait --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing
+        run: helm install testing -n apps --create-namespace --wait --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing --set service.swaggerEnabled=true charts/ssi-asr
 
       - name: Configure port forward to app in KinD
         run: |
