@@ -54,10 +54,10 @@ migrations:
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
-      cpu: 15m
+      cpu: 25m
       memory: 200M
     limits:
-      cpu: 45m
+      cpu: 75m
       memory: 200M
   seeding:
     testDataEnvironments: ""
