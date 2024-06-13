@@ -32,6 +32,11 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
 
   # Github Actions
   -
@@ -42,6 +47,9 @@ updates:
       - "github-actions"
     schedule:
       interval: "weekly"
+    groups:
+      dependencies:
+        dependency-type: "production"
 
   # Docker
   -
@@ -55,3 +63,6 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    groups:
+      dependencies:
+        dependency-type: "production"
