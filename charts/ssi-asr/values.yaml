@@ -96,9 +96,6 @@ postgresql:
     postgresPassword: ""
     # -- Password for the non-root username 'asr'. Secret-key 'password'.
     password: ""
-    # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
-    replicationPassword: ""
-  architecture: replication
   audit:
     pgAuditLog: "write, ddl"
     logLinePrefix: "%m %u %d "
