@@ -92,9 +92,6 @@ postgresql:
     username: asr
     # -- Database name.
     database: asr
-    # -- Secret containing the passwords for root usernames postgres and non-root username asr.
-    # Should not be changed without changing the "asr-postgresSecretName" template as well.
-    existingSecret: ""
     # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
     postgresPassword: ""
     # -- Password for the non-root username 'asr'. Secret-key 'password'.
@@ -149,7 +146,7 @@ centralidp:
   useAuthTrail: true
 
 ingress:
-  # -- SSI Credential Authority & Schema ingress parameters,
+  # -- SSI Authority & Schema ingress parameters,
   # enable ingress record generation for ssi-authority-schema-registry.
   enabled: false
   # className: "nginx"
