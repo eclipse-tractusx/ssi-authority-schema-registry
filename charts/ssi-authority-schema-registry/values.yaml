@@ -94,9 +94,9 @@ postgresql:
     database: asr
     # -- Secret containing the passwords for root usernames postgres and non-root username asr.
     # Should not be changed without changing the "asr-postgresSecretName" template as well.
-    existingSecret: "{{ .Release.Name }}-asr-postgres"
+    existingSecret: ""
     # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
-    postgrespassword: ""
+    postgresPassword: ""
     # -- Password for the non-root username 'asr'. Secret-key 'password'.
     password: ""
     # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
