@@ -37,7 +37,7 @@ public static class RegistryController
         var registry = group.MapGroup("/registry");
 
         registry.MapGet("credentials", (string? bpnl, CredentialTypeId? credentialTypeId, IRegistryBusinessLogic logic) => logic.GetCredentials(bpnl, credentialTypeId))
-            .WithSwaggerDescription("Gets all credentials with optional filter posibilities",
+            .WithSwaggerDescription("Gets all credentials with optional filter possibilities",
                 "Example: GET: api/registry/credentials",
                 "OPTIONAL: BPNL to filter the response",
                 "OPTIONAL: Type to filter the response")

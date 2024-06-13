@@ -15,7 +15,7 @@ public static class SchemaController
         var schema = group.MapGroup("/schema");
 
         schema.MapPost("validate", ([FromQuery] CredentialSchemaType schemaType, [FromBody] JsonDocument content, CancellationToken cancellationToken, ISchemaBusinessLogic logic) => logic.Validate(schemaType, content, cancellationToken))
-            .WithSwaggerDescription("Gets all credentials with optional filter posibilities",
+            .WithSwaggerDescription("Gets all credentials with optional filter possibilities",
                 "Example: POST: api/schema/validate",
                 "The type of the schema that should be validated",
                 "The schema as json")
