@@ -20,7 +20,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "registry.fullname" . }}-{{ .Values.migrations.name }}
+  name: {{ include "asr.fullname" . }}-{{ .Values.migrations.name }}
   annotations:
     "batch.kubernetes.io/job-tracking": "true"
     "helm.sh/hook": post-install,post-upgrade
@@ -28,11 +28,11 @@ metadata:
 spec:
   template:
     metadata:
-      name: {{ include "registry.fullname" . }}-{{ .Values.migrations.name }}
+      name: {{ include "asr.fullname" . }}-{{ .Values.migrations.name }}
     spec:
       restartPolicy: Never
       containers:
-      - name: {{ include "registry.fullname" . }}-{{ .Values.migrations.name }}
+      - name: {{ include "asr.fullname" . }}-{{ .Values.migrations.name }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -49,10 +49,10 @@ spec:
           - name: "REGISTRY_PASSWORD"
             valueFrom:
               secretKeyRef:
-                name: "{{ template "registry.postgresSecretName" . }}"
+                name: "{{ template "asr.postgresSecretName" . }}"
                 key: "password"
           - name: "CONNECTIONSTRINGS__REGISTRYDB"
-            value: "Server={{ template "registry.postgresql.primary.fullname" . }};Database={{ .Values.postgresql.auth.database }};Port={{ .Values.postgresql.auth.port }};User Id={{ .Values.postgresql.auth.username }};Password=$(REGISTRY_PASSWORD);Ssl Mode={{ .Values.dbConnection.sslMode }};"
+            value: "Server={{ template "asr.postgresql.primary.fullname" . }};Database={{ .Values.postgresql.auth.database }};Port={{ .Values.postgresql.auth.port }};User Id={{ .Values.postgresql.auth.username }};Password=$(REGISTRY_PASSWORD);Ssl Mode={{ .Values.dbConnection.sslMode }};"
           {{- end }}
           {{- if not .Values.postgresql.enabled }}
           - name: "REGISTRY_PASSWORD"
