@@ -8,24 +8,24 @@ The referenced container images are for demonstration purposes only.
 
 ## Installation
 
-To install the chart with the release name `ssi-authority-schema-registry`:
+To install the chart with the release name `ssi-asr`:
 
 ```shell
 $ helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-$ helm install ssi-authority-schema-registry tractusx-dev/ssi-authority-schema-registry
+$ helm install ssi-asr tractusx-dev/ssi-asr
 ```
 
 To install the helm chart into your cluster with your values:
 
 ```shell
-$ helm install -f your-values.yaml ssi-authority-schema-registry tractusx-dev/ssi-authority-schema-registry
+$ helm install -f your-values.yaml ssi-asr tractusx-dev/ssi-asr
 ```
 
 To use the helm chart as a dependency:
 
 ```yaml
 dependencies:
-  - name: ssi-authority-schema-registry
+  - name: ssi-asr
     repository: https://eclipse-tractusx.github.io/charts/dev
     version: 0.0.1-rc.1
 ```
@@ -69,7 +69,6 @@ dependencies:
 | postgresql.commonLabels."app.kubernetes.io/version" | string | `"15"` |  |
 | postgresql.auth.username | string | `"asr"` | Non-root username. |
 | postgresql.auth.database | string | `"asr"` | Database name. |
-| postgresql.auth.existingSecret | string | `""` | Secret containing the passwords for root usernames postgres and non-root username asr. Should not be changed without changing the "asr-postgresSecretName" template as well. |
 | postgresql.auth.postgresPassword | string | `""` | Password for the root username 'postgres'. Secret-key 'postgres-password'. |
 | postgresql.auth.password | string | `""` | Password for the non-root username 'asr'. Secret-key 'password'. |
 | postgresql.auth.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |

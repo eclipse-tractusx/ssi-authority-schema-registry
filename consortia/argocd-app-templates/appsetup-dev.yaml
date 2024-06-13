@@ -26,7 +26,7 @@ spec:
     namespace: product-portal
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/ssi-authority-schema-registry
+    path: charts/ssi-asr
     repoURL: 'https://github.com/eclipse-tractusx/ssi-authority-schema-registry.git'
     targetRevision: main
     plugin:

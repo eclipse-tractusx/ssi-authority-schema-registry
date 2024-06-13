@@ -85,7 +85,7 @@ jobs:
 
       - name: Update Helm dependencies
         run: |
-          cd charts/ssi-authority-schema-registry
+          cd charts/ssi-asr
           helm dependency build
 
       - name: Install the chart on KinD cluster

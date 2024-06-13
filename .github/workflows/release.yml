@@ -55,7 +55,7 @@ jobs:
 
       - name: Update helm dependencies for ssi-authority-schema-registry
         run: |
-          cd charts/ssi-authority-schema-registry
+          cd charts/ssi-asr
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm dependency update
 
@@ -68,7 +68,7 @@ jobs:
       - name: Get current appVersion
         id: app-version
         run: |
-          current=$(cat ./charts/ssi-authority-schema-registry/Chart.yaml | grep "appVersion:" | head -1 | cut -d ":" -d " " -f2)
+          current=$(cat ./charts/ssi-asr/Chart.yaml | grep "appVersion:" | head -1 | cut -d ":" -d " " -f2)
           echo "current=$current" >> $GITHUB_OUTPUT
           echo "Exported $current appVersion"
 

@@ -32,7 +32,7 @@ Be aware that migrations coming release branches for release candidates or from 
 
 The version needs to be updated in the `src` directory within the 'Directory.Build.props' file.
 
-Also, bump the chart and app version in the [Chart.yaml](../../../charts/ssi-authority-schema-registry/Chart.yaml) and the version of the images in the [values.yaml](../../../charts/ssi-authority-schema-registry/values.yaml).
+Also, bump the chart and app version in the [Chart.yaml](../../../charts/ssi-asr/Chart.yaml) and the version of the images in the [values.yaml](../../../charts/ssi-asr/values.yaml).
 
 _Consortia relevant:  Update the version of the targetRevision tag in the [argocd-app-templates](../../../consortia/argocd-app-templates/), used for consortia-environments._
 

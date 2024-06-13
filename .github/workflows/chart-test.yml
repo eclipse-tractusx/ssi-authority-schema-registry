@@ -22,11 +22,11 @@ name: Lint and Test Chart
 on:
   push:
     paths:
-      - 'charts/ssi-authority-schema-registry/**'
+      - 'charts/ssi-asr/**'
     branches: [main]
   pull_request:
     paths:
-      - 'charts/ssi-authority-schema-registry/**'
+      - 'charts/ssi-asr/**'
   workflow_dispatch:
     inputs:
       node_image:
@@ -103,7 +103,7 @@ jobs:
         run: ct lint --validate-maintainers=false --check-version-increment=false --target-branch ${{ github.event.repository.default_branch }}
 
       - name: Run chart-testing (install)
-        run: ct install --charts charts/ssi-authority-schema-registry --config charts/chart-testing-config.yaml --helm-extra-set-args "--set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing"
+        run: ct install --charts charts/ssi-asr --config charts/chart-testing-config.yaml --helm-extra-set-args "--set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing"
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
       # TODO: uncomment the step after the first stable release
@@ -114,6 +114,6 @@ jobs:
       #     helm repo add bitnami https://charts.bitnami.com/bitnami
       #     helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
       #     helm install registry tractusx-dev/ssi-authority-schema-registry --version ${{ github.event.inputs.upgrade_from || '1.0.0' }} --namespace upgrade --create-namespace
-      #     helm dependency update charts/ssi-authority-schema-registry
-      #     helm upgrade registry charts/ssi-authority-schema-registry --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing --namespace upgrade
+      #     helm dependency update charts/ssi-asr
+      #     helm upgrade registry charts/ssi-asr --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing --namespace upgrade
       #   if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
