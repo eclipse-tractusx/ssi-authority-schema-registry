@@ -65,10 +65,6 @@ migrations:
   logging:
     default: "Information"
 
-# -- Secret containing the client-secrets for the connection to portal and wallet
-# as well as encryptionKeys for issuer.credential and processesworker.wallet
-existingSecret: ""
-
 dotnetEnvironment: "Production"
 
 dbConnection:
