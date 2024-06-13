@@ -24,7 +24,7 @@ name: "Trivy Stable"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   # pull_request:
   # The branches below must be a subset of the branches above
   # branches: [ main, master ]
@@ -39,7 +39,6 @@ on:
 
 env:
   IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "ssi-authority-schema-registry"
 
 jobs:
   analyze-config:
@@ -70,7 +69,7 @@ jobs:
         with:
           sarif_file: "trivy-results1.sarif"
 
-  analyze-policy-hub-service:
+  analyze-service:
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -91,7 +90,39 @@ jobs:
         uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d # v0.18.0
         with:
           # Path to Docker image
-          image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}-service:latest"
+          image-ref: "${{ env.IMAGE_NAMESPACE }}/ssi-authority-schema-registry-service:latest"
+          format: "sarif"
+          output: "trivy-results2.sarif"
+          vuln-type: "os,library"
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3.24.9
+        with:
+          sarif_file: "trivy-results2.sarif"
+
+  analyze-migrations:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      # It's also possible to scan your private registry with Trivy's built-in image scan.
+      # All you have to do is set ENV vars.
+      # Docker Hub needs TRIVY_USERNAME and TRIVY_PASSWORD.
+      # You don't need to set ENV vars when downloading from a public repository.
+      # For public images, no ENV vars must be set.
+      - name: Run Trivy vulnerability scanner
+        if: always()
+        uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d # v0.18.0
+        with:
+          # Path to Docker image
+          image-ref: "${{ env.IMAGE_NAMESPACE }}/ssi-authority-schema-registry-migrations:latest"
           format: "sarif"
           output: "trivy-results3.sarif"
           vuln-type: "os,library"
@@ -101,35 +132,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3.24.9
         with:
           sarif_file: "trivy-results3.sarif"
-
-  analyze-policy-hub-migrations:
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-
-      # It's also possible to scan your private registry with Trivy's built-in image scan.
-      # All you have to do is set ENV vars.
-      # Docker Hub needs TRIVY_USERNAME and TRIVY_PASSWORD.
-      # You don't need to set ENV vars when downloading from a public repository.
-      # For public images, no ENV vars must be set.
-      - name: Run Trivy vulnerability scanner
-        if: always()
-        uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d # v0.18.0
-        with:
-          # Path to Docker image
-          image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}-migrations:latest"
-          format: "sarif"
-          output: "trivy-results9.sarif"
-          vuln-type: "os,library"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        if: always()
-        uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3.24.9
-        with:
-          sarif_file: "trivy-results9.sarif"
