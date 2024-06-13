@@ -12,7 +12,7 @@ flowchart LR
     RS(Registry Service)
     PHD[("Postgres Database \n \n (Base data created with \n application seeding)")]
 
-    subgraph SSI Authority & Schema Registry Product   
+    subgraph SSI Authority & Schema Registry Product
         ING
         PHD
         RS

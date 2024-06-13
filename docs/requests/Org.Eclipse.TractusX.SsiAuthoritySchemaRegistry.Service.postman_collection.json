@@ -16,7 +16,7 @@
 							"name": "credentials",
 							"item": [
 								{
-									"name": "Gets all credentials with optional filter posibilities - Without Filter",
+									"name": "Gets all credentials with optional filter possibilities - Without Filter",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -41,7 +41,7 @@
 									"response": []
 								},
 								{
-									"name": "Gets all credentials with optional filter posibilities - With BPN Filter",
+									"name": "Gets all credentials with optional filter possibilities - With BPN Filter",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -72,7 +72,7 @@
 									"response": []
 								},
 								{
-									"name": "Gets all credentials with optional filter posibilities - With Credential Filter",
+									"name": "Gets all credentials with optional filter possibilities - With Credential Filter",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -113,7 +113,7 @@
 							"name": "validate",
 							"item": [
 								{
-									"name": "Gets all credentials with optional filter posibilities - With Valid Schema",
+									"name": "Gets all credentials with optional filter possibilities - With Valid Schema",
 									"request": {
 										"method": "POST",
 										"header": [
@@ -159,7 +159,7 @@
 									"response": []
 								},
 								{
-									"name": "Gets all credentials with optional filter posibilities - With Invalid Schema",
+									"name": "Gets all credentials with optional filter possibilities - With Invalid Schema",
 									"request": {
 										"method": "POST",
 										"header": [

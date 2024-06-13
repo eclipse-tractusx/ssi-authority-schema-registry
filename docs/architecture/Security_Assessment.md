@@ -6,7 +6,7 @@
 | Security responsible      | tbd                                                                                                      |
 | Version number of product | 1.0.0                                                                                                    |
 | Dates of assessment       | tbd                                                                                                      |
-| Status of assessment      | Done & Approved                                                                                          |
+| Status of assessment      | tdb                                                                                                      |
 
 ## Product Description
 

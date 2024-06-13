@@ -42,12 +42,12 @@ Feature branch:
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
 gitGraph
-    commit id: "release(1.0.0): merge in main"
-    branch dev order: 1
-    checkout dev
+    commit id: "chore: initial commit"
     branch feature/feature1 order: 2
     commit id:"feat(function): add feature1"
     commit id:"feat(function): enable feature1"
+    checkout main
+    merge feature/feature1
 ```
 
 Bugfix branch:
@@ -55,13 +55,13 @@ Bugfix branch:
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
 gitGraph
-    commit id: "release(1.0.0): merge in main"
-    branch dev order: 1
-    checkout dev
-    branch bug/bug1  order: 3
-    commit id: "fix(function): change bug1"
+    commit id: "build(v0.1.0): merge in main"
+    branch bug/bug1  order: 2
+    commit id: "fix(function): change bug"
     checkout bug/bug1
-    commit id:"fix(function): refactor bug1"
+    commit id:"fix(function): refactor bug"
+    checkout main
+    merge bug/bug1
 ```
 
 Release branch:
@@ -69,12 +69,11 @@ Release branch:
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
 gitGraph
-    commit id: "release: v1.0.0"
-    branch dev order: 1
-    checkout dev
-    branch release/1.1.0 order: 2
-    commit id: "release(1.1.0): aggregate migrations (backend)"
-    commit id: "release(1.1.0): update version, changelog..." tag: "1.1.0"
+    commit id: "build(v0.1.0): merge in main"
+    branch release/v1.0.0 order: 2
+    commit id: "build(v1.0.0): bump version, changelog..." tag: "v1.0.0"
+    checkout main
+    merge release/v1.0.0
 ```
 
 Hotfix branch:
@@ -83,14 +82,14 @@ Hotfix branch:
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
 gitGraph
     commit id: "release: v1.0.0"
-    branch dev order: 1
-    checkout dev
-    branch release/1.1.0 order: 2
-    commit id: "release(1.1.0): aggregate migrations (backend)"
-    commit id: "release(1.1.0): update version, changelog..." tag: "1.1.0"
-    checkout release/1.1.0
-    branch hotfix/1.1.1 order: 3
-    commit id: "hotfix(1.1.1): update version, changelog..." tag: "1.1.1"
+    branch release/v1.0.0 order: 2
+    commit id: "build(v1.0.0): bump version, changelog..." tag: "v1.0.0"
+    checkout main
+    merge release/v1.0.0
+    checkout release/v1.0.0
+    branch hotfix/v1.0.1 order: 3
+    checkout hotfix/v1.0.1
+    commit id: "hotfix(v1.0.1): bump version, changelog..." tag: "v1.0.1"
 ```
 
 ### PR title
