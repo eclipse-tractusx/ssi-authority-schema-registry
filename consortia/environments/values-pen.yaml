@@ -51,6 +51,5 @@ centralidp:
 
 postgresql:
   auth:
-    postgrespassword: "<path:portal/data/ssi-authority-schema-registry/pen/postgres#postgres-password>"
+    postgresPassword: "<path:portal/data/ssi-authority-schema-registry/pen/postgres#postgres-password>"
     password: "<path:portal/data/ssi-authority-schema-registry/pen/postgres#password>"
-    replicationPassword: "<path:portal/data/ssi-authority-schema-registry/pen/postgres#replication-password>"
