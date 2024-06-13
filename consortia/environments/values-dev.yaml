@@ -37,7 +37,7 @@ ingress:
           backend:
             port: 8080
 
-registry:
+service:
   image:
     tag: "dev"
   imagePullPolicy: "Always"
