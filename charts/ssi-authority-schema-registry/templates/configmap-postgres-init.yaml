@@ -21,15 +21,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-registry-cm-postgres
+  name: {{ .Release.Name }}-asr-cm-postgres
   namespace: {{ .Release.Namespace }}
 data:
   02-init-db.sql: |
-    CREATE SCHEMA registry;
-    ALTER SCHEMA registry OWNER TO registry;
+    CREATE SCHEMA asr;
+    ALTER SCHEMA asr OWNER TO asr;
     CREATE TABLE public.__efmigrations_history_registry (
         migration_id character varying(150) NOT NULL,
         product_version character varying(32) NOT NULL
     );
-    ALTER TABLE public.__efmigrations_history_registry OWNER TO registry;
+    ALTER TABLE public.__efmigrations_history_registry OWNER TO asr;
 {{- end -}}

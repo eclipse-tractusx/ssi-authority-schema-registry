@@ -72,13 +72,13 @@ existingSecret: ""
 dotnetEnvironment: "Production"
 
 dbConnection:
-  schema: "registry"
+  schema: "asr"
   sslMode: "Disable"
 
 postgresql:
   # -- PostgreSQL chart configuration;
   # default configurations:
-  # host: "registry-postgresql-primary",
+  # host: "asr-postgresql-primary",
   # port: 5432;
   # Switch to enable or disable the PostgreSQL helm chart.
   enabled: true
@@ -89,15 +89,15 @@ postgresql:
     app.kubernetes.io/version: "15"
   auth:
     # -- Non-root username.
-    username: registry
+    username: asr
     # -- Database name.
-    database: registry
-    # -- Secret containing the passwords for root usernames postgres and non-root username registry.
-    # Should not be changed without changing the "registry-postgresSecretName" template as well.
-    existingSecret: "{{ .Release.Name }}-registry-postgres"
+    database: asr
+    # -- Secret containing the passwords for root usernames postgres and non-root username asr.
+    # Should not be changed without changing the "asr-postgresSecretName" template as well.
+    existingSecret: "{{ .Release.Name }}-asr-postgres"
     # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
     postgrespassword: ""
-    # -- Password for the non-root username 'registry'. Secret-key 'password'.
+    # -- Password for the non-root username 'asr'. Secret-key 'password'.
     password: ""
     # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
     replicationPassword: ""
@@ -109,7 +109,7 @@ postgresql:
     # -- Extended PostgreSQL Primary configuration (increase of max_connections recommended - default is 100)
     extendedConfiguration: ""
     initdb:
-      scriptsConfigMap: "{{ .Release.Name }}-registry-cm-postgres"
+      scriptsConfigMap: "{{ .Release.Name }}-asr-cm-postgres"
   readReplicas:
   # -- Extended PostgreSQL read only replicas configuration (increase of max_connections recommended - default is 100)
     extendedConfiguration: ""
@@ -120,17 +120,17 @@ externalDatabase:
   # And the init script (02-init-db.sql) available in templates/configmap-postgres-init.yaml
   # needs to be executed beforehand.
   # Database host ('-primary' is added as postfix).
-  host: "registry-postgres-ext"
+  host: "asr-postgres-ext"
   # -- Database port number.
   port: 5432
-  # -- Non-root username for registry.
-  username: "registry"
+  # -- Non-root username for asr.
+  username: "asr"
   # -- Database name.
-  database: "registry"
-  # -- Password for the non-root username (default 'registry'). Secret-key 'password'.
+  database: "asr"
+  # -- Password for the non-root username (default 'asr'). Secret-key 'password'.
   password: ""
-  # -- Secret containing the password non-root username, (default 'registry').
-  existingSecret: "registry-external-db"
+  # -- Secret containing the password non-root username, (default 'asr').
+  existingSecret: "asr-external-db"
 
 # -- Provide details about centralidp (CX IAM) Keycloak instance.
 centralidp:

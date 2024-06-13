@@ -64,7 +64,7 @@ Determine secret name.
 Define secret name of postgres dependency.
 */}}
 {{- define "asr.postgresSecretName" -}}
-{{- printf "%s-%s" .Release.Name "registry-postgres" }}
+{{- printf "%s-%s" .Release.Name "asr-postgres" }}
 {{- end }}
 
 {{/*
