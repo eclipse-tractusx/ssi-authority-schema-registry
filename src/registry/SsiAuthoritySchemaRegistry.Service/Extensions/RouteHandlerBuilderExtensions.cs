@@ -19,11 +19,9 @@
 
 using Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling.Web;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Models;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Extensions;
 
-[ExcludeFromCodeCoverage]
 public static class RouteHandlerBuilderExtensions
 {
     public static RouteHandlerBuilder WithSwaggerDescription(this RouteHandlerBuilder builder, string summary, string description, params string[] parameterDescriptions) =>

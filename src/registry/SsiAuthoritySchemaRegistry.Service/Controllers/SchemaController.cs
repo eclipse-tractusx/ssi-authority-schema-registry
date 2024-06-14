@@ -2,14 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.BusinessLogic;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Extensions;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Models;
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Controllers;
 
 public static class SchemaController
 {
-    [ExcludeFromCodeCoverage]
     public static RouteGroupBuilder MapSchemaApi(this RouteGroupBuilder group)
     {
         var schema = group.MapGroup("/schema");

@@ -18,11 +18,8 @@
  ********************************************************************************/
 
 using FluentAssertions;
-using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Models;
-using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Enums;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Models;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Tests.Setup;
-using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;

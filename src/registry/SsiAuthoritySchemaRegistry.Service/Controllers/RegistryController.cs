@@ -22,7 +22,6 @@ using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Enums;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.BusinessLogic;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Extensions;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Models;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Controllers;
 
@@ -31,7 +30,6 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Controllers;
 /// </summary>
 public static class RegistryController
 {
-    [ExcludeFromCodeCoverage]
     public static RouteGroupBuilder MapRegistryApi(this RouteGroupBuilder group)
     {
         var registry = group.MapGroup("/registry");

@@ -21,13 +21,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.DependencyInjection;
 
 public static class RegistryRepositoriesServiceExtensions
 {
-    [ExcludeFromCodeCoverage]
     public static IServiceCollection AddRegistryRepositories(this IServiceCollection services, IConfiguration configuration)
     {
         services

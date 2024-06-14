@@ -49,19 +49,14 @@ public class RegistryContext : DbContext
         modelBuilder.HasAnnotation("Relational:Collation", "en_US.utf8");
         modelBuilder.HasDefaultSchema("ssi-authority-schema-registry");
 
-        modelBuilder.Entity<Authority>(e =>
-        {
-            e.HasKey(a => a.Bpn);
-        });
+        modelBuilder.Entity<Authority>()
+            .HasKey(a => a.Bpn);
 
-        modelBuilder.Entity<Credential>(e =>
-            {
-                e.HasMany(c => c.Authorities)
-                    .WithOne(c => c.Credential)
-                    .HasForeignKey(c => c.CredentialId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-            }
-        );
+        modelBuilder.Entity<Credential>()
+            .HasMany(c => c.Authorities)
+            .WithOne(c => c.Credential)
+            .HasForeignKey(c => c.CredentialId)
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         modelBuilder.Entity<CredentialAuthority>(e =>
         {

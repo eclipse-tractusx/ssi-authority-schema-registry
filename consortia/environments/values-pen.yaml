@@ -46,9 +46,6 @@ migrations:
   seeding:
     testDataEnvironments: "consortia"
 
-centralidp:
-  address: "https://centralidp-pen.dev.demo.catena-x.net"
-
 postgresql:
   auth:
     postgresPassword: "<path:portal/data/ssi-authority-schema-registry/pen/postgres#postgres-password>"

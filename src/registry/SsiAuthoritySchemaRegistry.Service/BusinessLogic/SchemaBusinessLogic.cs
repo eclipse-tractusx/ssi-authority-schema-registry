@@ -36,9 +36,7 @@ public class SchemaBusinessLogic : ISchemaBusinessLogic
         }
 
         var path = Path.Combine(location, "Schemas", $"{schemaType}.schema.json");
-        var schemaJson = await File.ReadAllTextAsync(path, cancellationToken).ConfigureAwait(false);
-
-        var schema = JsonSchema.FromText(schemaJson);
+        var schema = await JsonSchema.FromStream(File.OpenRead(path)).ConfigureAwait(false);
         SchemaRegistry.Global.Register(schema);
         var results = schema.Evaluate(content);
         return results.IsValid;

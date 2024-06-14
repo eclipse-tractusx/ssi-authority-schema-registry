@@ -19,6 +19,7 @@
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Org.Eclipse.TractusX.Portal.Backend.Framework.Linq;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.Seeding;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities;
@@ -58,17 +59,19 @@ public class BatchInsertSeeder(RegistryContext context, ILogger<BatchInsertSeede
         var additionalEnvironments = _settings.TestDataEnvironments ?? Enumerable.Empty<string>();
         var data = await SeederHelper.GetSeedData<T>(logger, fileName, _settings.DataPaths, cancellationToken, additionalEnvironments.ToArray()).ConfigureAwait(false);
         logger.LogDebug("Found {ElementCount} data", data.Count);
-        if (data.Any())
+        if (data.IfAny(async seedingData =>
+            {
+                var typeName = typeof(T).Name;
+                var inner = seedingData.GroupJoin(context.Set<T>(), keySelector, keySelector, (d, dbEntry) => new { d, dbEntry })
+                    .SelectMany(t => t.dbEntry.DefaultIfEmpty(), (t, x) => new { t, x })
+                    .Where(t => t.x == null)
+                    .Select(t => t.t.d).ToList();
+                logger.LogDebug("Seeding {DataCount} {TableName}", inner.Count, typeName);
+                await context.Set<T>().AddRangeAsync(inner, cancellationToken).ConfigureAwait(false);
+                logger.LogDebug("Seeded {TableName}", typeName);
+            }, out var seedingTask) && seedingTask != null)
         {
-            var typeName = typeof(T).Name;
-            logger.LogDebug("Started to Seed {TableName}", typeName);
-            data = data.GroupJoin(context.Set<T>(), keySelector, keySelector, (d, dbEntry) => new { d, dbEntry })
-                .SelectMany(t => t.dbEntry.DefaultIfEmpty(), (t, x) => new { t, x })
-                .Where(t => t.x == null)
-                .Select(t => t.t.d).ToList();
-            logger.LogDebug("Seeding {DataCount} {TableName}", data.Count, typeName);
-            await context.Set<T>().AddRangeAsync(data, cancellationToken).ConfigureAwait(false);
-            logger.LogDebug("Seeded {TableName}", typeName);
+            await seedingTask.ConfigureAwait(ConfigureAwaitOptions.None);
         }
     }
 }
