@@ -60,7 +60,6 @@ dependencies:
 | migrations.seeding.testDataEnvironments | string | `""` |  |
 | migrations.seeding.testDataPaths | string | `"Seeder/Data"` |  |
 | migrations.logging.default | string | `"Information"` |  |
-| existingSecret | string | `""` | Secret containing the client-secrets for the connection to portal and wallet as well as encryptionKeys for issuer.credential and processesworker.wallet |
 | dotnetEnvironment | string | `"Production"` |  |
 | dbConnection.schema | string | `"asr"` |  |
 | dbConnection.sslMode | string | `"Disable"` |  |
@@ -71,8 +70,6 @@ dependencies:
 | postgresql.auth.database | string | `"asr"` | Database name. |
 | postgresql.auth.postgresPassword | string | `""` | Password for the root username 'postgres'. Secret-key 'postgres-password'. |
 | postgresql.auth.password | string | `""` | Password for the non-root username 'asr'. Secret-key 'password'. |
-| postgresql.auth.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
-| postgresql.architecture | string | `"replication"` |  |
 | postgresql.audit.pgAuditLog | string | `"write, ddl"` |  |
 | postgresql.audit.logLinePrefix | string | `"%m %u %d "` |  |
 | postgresql.primary.extendedConfiguration | string | `""` | Extended PostgreSQL Primary configuration (increase of max_connections recommended - default is 100) |
@@ -83,10 +80,7 @@ dependencies:
 | externalDatabase.username | string | `"asr"` | Non-root username for asr. |
 | externalDatabase.database | string | `"asr"` | Database name. |
 | externalDatabase.password | string | `""` | Password for the non-root username (default 'asr'). Secret-key 'password'. |
-| externalDatabase.existingSecret | string | `"asr-external-db"` | Secret containing the password non-root username, (default 'asr'). |
-| centralidp | object | `{"address":"https://centralidp.example.org","authRealm":"CX-Central","jwtBearerOptions":{"metadataPath":"/auth/realms/CX-Central/.well-known/openid-configuration","refreshInterval":"00:00:30","requireHttpsMetadata":"true","tokenValidationParameters":{"validAudience":"empty","validIssuerPath":"/auth/realms/CX-Central"}},"tokenPath":"/auth/realms/CX-Central/protocol/openid-connect/token","useAuthTrail":true}` | Provide details about centralidp (CX IAM) Keycloak instance. |
-| centralidp.address | string | `"https://centralidp.example.org"` | Provide centralidp base address (CX IAM), without trailing '/auth'. |
-| centralidp.useAuthTrail | bool | `true` | Flag if the api should be used with an leading /auth path |
+| externalDatabase.existingSecret | string | `""` | Existing secret containing the password non-root username. |
 | ingress.enabled | bool | `false` | SSI Authority & Schema ingress parameters, enable ingress record generation for ssi-authority-schema-registry. |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
 | ingress.hosts[0] | object | `{"host":"","paths":[{"backend":{"port":8080},"path":"/api","pathType":"Prefix"}]}` | Provide default path for the ingress record. |
