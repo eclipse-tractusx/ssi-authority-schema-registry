@@ -24,8 +24,8 @@ using System.Text.Json.Serialization;
 
 const string Version = "v1";
 
-WebApplicationBuildRunner
-    .BuildAndRunWebApplication<Program>(args, "registry", Version, ".Registry",
+await WebApplicationBuildRunner
+    .BuildAndRunWebApplicationAsync<Program>(args, "registry", Version, ".Registry",
         builder =>
         {
             builder.Services.AddEndpointsApiExplorer();
@@ -45,4 +45,4 @@ WebApplicationBuildRunner
                 .WithOpenApi()
                 .MapRegistryApi()
                 .MapSchemaApi();
-        });
+        }).ConfigureAwait(ConfigureAwaitOptions.None);
