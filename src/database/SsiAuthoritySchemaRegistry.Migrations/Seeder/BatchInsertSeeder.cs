@@ -46,18 +46,18 @@ public class BatchInsertSeeder(RegistryContext context, ILogger<BatchInsertSeede
             return;
         }
 
-        await SeedTable<Authority>("authorities", x => x.Bpn, cancellationToken).ConfigureAwait(false);
-        await SeedTable<Credential>("credentials", x => x.Id, cancellationToken).ConfigureAwait(false);
-        await SeedTable<CredentialAuthority>("credential_authorities", x => new { x.CredentialId, x.Bpn }, cancellationToken).ConfigureAwait(false);
+        await SeedTable<Authority>("authorities", x => x.Bpn, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
+        await SeedTable<Credential>("credentials", x => x.Id, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
+        await SeedTable<CredentialAuthority>("credential_authorities", x => new { x.CredentialId, x.Bpn }, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
 
-        await context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+        await context.SaveChangesAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
     }
 
     private async Task SeedTable<T>(string fileName, Func<T, object> keySelector, CancellationToken cancellationToken) where T : class
     {
         logger.LogDebug("Start seeding {Filename}", fileName);
         var additionalEnvironments = _settings.TestDataEnvironments ?? Enumerable.Empty<string>();
-        var data = await SeederHelper.GetSeedData<T>(logger, fileName, _settings.DataPaths, cancellationToken, additionalEnvironments.ToArray()).ConfigureAwait(false);
+        var data = await SeederHelper.GetSeedData<T>(logger, fileName, _settings.DataPaths, cancellationToken, additionalEnvironments.ToArray()).ConfigureAwait(ConfigureAwaitOptions.None);
         logger.LogDebug("Found {ElementCount} data", data.Count);
         if (data.IfAny(async seedingData =>
             {
@@ -67,7 +67,7 @@ public class BatchInsertSeeder(RegistryContext context, ILogger<BatchInsertSeede
                     .Where(t => t.x == null)
                     .Select(t => t.t.d).ToList();
                 logger.LogDebug("Seeding {DataCount} {TableName}", inner.Count, typeName);
-                await context.Set<T>().AddRangeAsync(inner, cancellationToken).ConfigureAwait(false);
+                await context.Set<T>().AddRangeAsync(inner, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
                 logger.LogDebug("Seeded {TableName}", typeName);
             }, out var seedingTask))
         {

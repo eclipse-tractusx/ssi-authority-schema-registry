@@ -31,8 +31,8 @@ public static class RegistryRepositoriesServiceExtensions
     public static IServiceCollection AddRegistryRepositories(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddDbContext<RegistryContext>(o => o
-                .UseNpgsql(configuration.GetConnectionString("RegistryDb")))
+            .AddDbContext<RegistryContext>(o =>
+                o.UseNpgsql(configuration.GetConnectionString("RegistryDb")))
             .AddScoped<IRegistryRepositories, RegistryRepositories>()
             .AddHealthChecks()
             .AddDbContextCheck<RegistryContext>("RegistryContext", tags: Tags);
