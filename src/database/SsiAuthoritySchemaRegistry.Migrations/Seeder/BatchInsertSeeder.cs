@@ -69,7 +69,7 @@ public class BatchInsertSeeder(RegistryContext context, ILogger<BatchInsertSeede
                 logger.LogDebug("Seeding {DataCount} {TableName}", inner.Count, typeName);
                 await context.Set<T>().AddRangeAsync(inner, cancellationToken).ConfigureAwait(false);
                 logger.LogDebug("Seeded {TableName}", typeName);
-            }, out var seedingTask) && seedingTask != null)
+            }, out var seedingTask))
         {
             await seedingTask.ConfigureAwait(ConfigureAwaitOptions.None);
         }
