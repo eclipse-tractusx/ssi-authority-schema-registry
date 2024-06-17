@@ -19,7 +19,7 @@
 
 name: Build Migrations Image
 
-on: 
+on:
   push:
     paths:
       # service and transitive paths
