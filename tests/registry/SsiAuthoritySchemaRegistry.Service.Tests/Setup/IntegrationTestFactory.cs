@@ -36,10 +36,14 @@ using Testcontainers.PostgreSql;
 using Xunit;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
+
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Tests.Setup;
 
 public class IntegrationTestFactory : WebApplicationFactory<RegistryBusinessLogic>, IAsyncLifetime
 {
+    private static readonly string[] TestDataEnvironments = ["test"];
+    private static readonly string[] DataPaths = ["Seeder/Data"];
+
     private readonly PostgreSqlContainer _container = new PostgreSqlBuilder()
         .WithDatabase("test_db")
         .WithImage("postgres")
@@ -96,8 +100,8 @@ public class IntegrationTestFactory : WebApplicationFactory<RegistryBusinessLogi
 
         var seederOptions = Options.Create(new SeederSettings
         {
-            TestDataEnvironments = new[] { "test" },
-            DataPaths = new[] { "Seeder/Data" }
+            TestDataEnvironments = TestDataEnvironments,
+            DataPaths = DataPaths
         });
         var insertSeeder = new BatchInsertSeeder(context,
             LoggerFactory.Create(c => c.AddConsole()).CreateLogger<BatchInsertSeeder>(),

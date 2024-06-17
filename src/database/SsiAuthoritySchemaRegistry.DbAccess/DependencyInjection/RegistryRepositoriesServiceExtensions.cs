@@ -26,6 +26,8 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.DependencyInj
 
 public static class RegistryRepositoriesServiceExtensions
 {
+    private static readonly string[] Tags = ["registrydb"];
+
     public static IServiceCollection AddRegistryRepositories(this IServiceCollection services, IConfiguration configuration)
     {
         services
@@ -33,7 +35,7 @@ public static class RegistryRepositoriesServiceExtensions
                 .UseNpgsql(configuration.GetConnectionString("RegistryDb")))
             .AddScoped<IRegistryRepositories, RegistryRepositories>()
             .AddHealthChecks()
-            .AddDbContextCheck<RegistryContext>("RegistryContext", tags: new[] { "registrydb" });
+            .AddDbContextCheck<RegistryContext>("RegistryContext", tags: Tags);
         return services;
     }
 }
