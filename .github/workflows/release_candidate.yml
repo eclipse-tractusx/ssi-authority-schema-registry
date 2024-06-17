@@ -34,11 +34,11 @@ jobs:
       matrix:
         include:
           - image: tractusx/ssi-authority-schema-registry-service
-            dockerfile: ./docker/Dockerfile-ssi-asr-service
-            dockernotice: ./docker/notice-ssi-asr-service.md
+            dockerfile: ./docker/Dockerfile-registry-service
+            dockernotice: ./docker/notice-registry-service.md
           - image: tractusx/ssi-authority-schema-registry-migrations
-            dockerfile: ./docker/Dockerfile-ssi-asr-migrations
-            dockernotice: ./docker/notice-ssi-asr-migrations.md
+            dockerfile: ./docker/Dockerfile-registry-migrations
+            dockernotice: ./docker/notice-registry-migrations.md
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1

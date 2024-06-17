@@ -1,43 +1,43 @@
 # Contribution details
 
-To contribute to the ssi authority schema registry as part of the open source community, please read the details defined below.
+To contribute to the SSI Authority & Schema Registry as part of the open source community, please read the details defined below.
 Besides a generic "how to", some commit and pull request (PR) guidelines are defined to ensure readability and make newly created PRs easier to review. Additionally, changelogs can get validated as well as written with more ease. Moreover, similar patterns are in use across the contributor community.
 
 **Content**:
 
 - [Commit How To](#how-to-contribute)
-- [Commit and PR guidelines](#commit-and-pr-guidelines)
+- [Commits, branches and pull requests guidelines](#commits-branches-and-pull-requests-guidelines)
 
 ## How To Contribute
 
 ### 1 Create a fork
 
-Open github - "eclipse-tractusx" project and select the respective repository to which you want to contribute.
+Open [GitHub - "eclipse-tractusx" project](https://github.com/eclipse-tractusx) and select the respective repository to which you want to contribute.
 [Create a fork of the respective repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
 ### 2 Fork setup
 
-Setup your fork by entering a name and make sure that you unselect the "main branch only" selection, in case the original repository has a dev and a main branch.
+Setup your fork by entering a name and make sure that you unselect the "main branch only" selection, in case the upstream repository maintains release branches besides the main branch.
 
-Click "Create fork"
+Click "Create fork".
 
 ### 3 Commit
 
 With the newly created fork, you can now start to contribute. Create a new branch in your own fork and start to implement the planned changes or new features.
-When the implementation is ready, create a PR against the original repository.
+When the implementation is ready, create a PR against the upstream repository.
 
 The PR will get reviewed by the repository owners/official committers.
-As part of the pr review, sonarcloud will run automatically, and unit tests (if configured) will get executed. The PR owner is responsible to check the results and fix possible findings.
+As part of the PR review, checks will run automatically, and unit tests (if configured) will get executed. The PR owner is responsible to check the results and fix possible findings.
 
-## Commit and PR guidelines
+## Commits, branches and pull requests guidelines
 
-### Commits
+### Commits and branches
 
 The suggestion is to use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-Here are some examples
+Here are some examples:
 
-Feature branch:
+#### Feature branch
 
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
@@ -50,7 +50,7 @@ gitGraph
     merge feature/feature1
 ```
 
-Bugfix branch:
+#### Bugfix branch
 
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
@@ -64,7 +64,7 @@ gitGraph
     merge bug/bug1
 ```
 
-Release branch:
+#### Release branch
 
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
@@ -76,7 +76,7 @@ gitGraph
     merge release/v1.0.0
 ```
 
-Hotfix branch:
+####  Hotfix branch
 
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
@@ -94,12 +94,16 @@ gitGraph
 
 ### PR title
 
-The suggested naming convention is '{type}{(function)}: {short summary}'
+The suggested naming convention is '{type}{(function)}: {short summary}'.
 
 ### PR description
 
 Add details to the change, fix or feature in the PR description.
 What was changed, why was it changed (e.g. which issue was fixed or which requirement was implemented), and how was it changed.
+
+### Additional information
+
+Please refer to the [Development Flow](./Dev-flow_git-diagram.md).
 
 ## NOTICE
 

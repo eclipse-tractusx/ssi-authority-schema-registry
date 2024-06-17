@@ -65,7 +65,7 @@ jobs:
         uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: .
-          file: ./docker/Dockerfile-ssi-asr-migrations
+          file: ./docker/Dockerfile-registry-migrations
           push: true
           tags: kind-registry:5000/ssi-authority-schema-registry-migrations:testing
 
@@ -74,7 +74,7 @@ jobs:
         uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: .
-          file: ./docker/Dockerfile-ssi-asr-service
+          file: ./docker/Dockerfile-registry-service
           push: true
           tags: kind-registry:5000/ssi-authority-schema-registry-service:testing
 
@@ -85,11 +85,11 @@ jobs:
 
       - name: Update Helm dependencies
         run: |
-          cd charts/ssi-authority-schema-registry
+          cd charts/ssi-asr
           helm dependency build
 
       - name: Install the chart on KinD cluster
-        run: helm install testing -n apps --create-namespace --wait --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing
+        run: helm install testing -n apps --create-namespace --wait --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing --set service.swaggerEnabled=true charts/ssi-asr
 
       - name: Configure port forward to app in KinD
         run: |
@@ -98,7 +98,7 @@ jobs:
           echo "-> IP: $IP_ADDR"
           echo "IP_ADDR=$IP_ADDR" >> $GITHUB_ENV
 
-          POD_NAME=$(kubectl get pods --namespace apps -l "app.kubernetes.io/name=ssi-authority-schema-registry,app.kubernetes.io/instance=testing" -o jsonpath="{.items[0].metadata.name}")
+          POD_NAME=$(kubectl get pods --namespace apps -l "app.kubernetes.io/name=ssi-asr,app.kubernetes.io/instance=testing" -o jsonpath="{.items[0].metadata.name}")
           CONTAINER_PORT=$(kubectl get pod --namespace apps $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
 
           echo "Port-forwarding 0.0.0.0:8080 to $POD_NAME:$CONTAINER_PORT..."
@@ -120,7 +120,7 @@ jobs:
           docker pull ghcr.io/zaproxy/zaproxy:stable -q
 
           echo "Starting ZAP Docker container..."
-          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t http://$IP_ADDR:8080/api/registry/swagger/v2/swagger.json -f openapi -w report_md.md -r report_html.html -T 1
+          docker run -v ${GITHUB_WORKSPACE}:/zap/wrk/:rw ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t http://$IP_ADDR:8080/api/registry/swagger/v1/swagger.json -f openapi -w report_md.md -r report_html.html -T 1
           
           echo "... done."
 

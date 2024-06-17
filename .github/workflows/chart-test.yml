@@ -22,11 +22,11 @@ name: Lint and Test Chart
 on:
   push:
     paths:
-      - 'charts/ssi-authority-schema-registry/**'
+      - 'charts/ssi-asr/**'
     branches: [main]
   pull_request:
     paths:
-      - 'charts/ssi-authority-schema-registry/**'
+      - 'charts/ssi-asr/**'
   workflow_dispatch:
     inputs:
       node_image:
@@ -65,7 +65,7 @@ jobs:
         uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: .
-          file: ./docker/Dockerfile-ssi-asr-migrations
+          file: ./docker/Dockerfile-registry-migrations
           push: true
           tags: kind-registry:5000/ssi-authority-schema-registry-migrations:testing
 
@@ -74,7 +74,7 @@ jobs:
         uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: .
-          file: ./docker/Dockerfile-ssi-asr-service
+          file: ./docker/Dockerfile-registry-service
           push: true
           tags: kind-registry:5000/ssi-authority-schema-registry-service:testing
   
@@ -103,7 +103,7 @@ jobs:
         run: ct lint --validate-maintainers=false --check-version-increment=false --target-branch ${{ github.event.repository.default_branch }}
 
       - name: Run chart-testing (install)
-        run: ct install --charts charts/ssi-authority-schema-registry --config charts/chart-testing-config.yaml --helm-extra-set-args "--set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing"
+        run: ct install --charts charts/ssi-asr --config charts/chart-testing-config.yaml --helm-extra-set-args "--set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing"
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
       # TODO: uncomment the step after the first stable release
@@ -113,7 +113,7 @@ jobs:
       #   run: |
       #     helm repo add bitnami https://charts.bitnami.com/bitnami
       #     helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-      #     helm install ssi-asr tractusx-dev/ssi-authority-schema-registry --version ${{ github.event.inputs.upgrade_from || '1.0.0' }} --namespace upgrade --create-namespace
+      #     helm install registry tractusx-dev/ssi-authority-schema-registry --version ${{ github.event.inputs.upgrade_from || '1.0.0' }} --namespace upgrade --create-namespace
       #     helm dependency update charts/ssi-asr
-      #     helm upgrade ssi-asr charts/ssi-asr --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing --namespace upgrade
+      #     helm upgrade registry charts/ssi-asr --set service.image.name=kind-registry:5000/ssi-authority-schema-registry-service --set service.image.tag=testing --set migrations.image.name=kind-registry:5000/ssi-authority-schema-registry-migrations --set migrations.image.tag=testing --namespace upgrade
       #   if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
