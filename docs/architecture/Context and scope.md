@@ -2,9 +2,22 @@
 
 ## Business Context
 
-The Self-Sovereign Identity (SSI) credential issuer core purpose is to facilitate seamless communication with digital wallets, which are essential tools for managing digital identities. Being responsible for the critical functions of creating, revoking, and managing the expiry of credentials. This ensures that issuers maintain control over their issues digital identities.
+The Authority & Schema Registry is a important component of the Self-Sovereign Identity (SSI) ecosystem. It serves the following key business functions:
 
-To further enhance the user experience, the SSI Authority & Schema Registry provides users with a comprehensive overview of available use case credentials. By doing so, it empowers users to make informed decisions about which credentials to acquire and use. The business context of the SSI Authority & Schema Registry is thus centered around providing a robust, user-friendly, and secure mechanism for identity management.
+1. **Identity Authority Management**:
+   - The registry acts as the authoritative source for verifying the validity of identity issuers.
+   - It maintains a list of approved, trusted identity authorities that can issue verifiable credentials.
+   - This ensures trust and reliability in the overall SSI ecosystem.
+
+2. **Credential Schema Management**:
+   - The registry stores the standardized schemas for verifiable credentials.
+   - It provides a centralized repository of approved credential schemas that can be used by issuers and verifiers.
+   - This allows for interoperability and consistency in how credentials are structured and validated across the SSI network.
+
+3. **Discovery and Integration**:
+   - The registry acts as a directory, allowing participants to discover approved identity authorities and credential schemas.
+
+From a business perspective, the Authority & Schema Registry is crucial for building trust, interoperability, and compliance within the SSI ecosystem. It provides a foundational layer that allows organizations, governments, and individuals to confidently participate in secure, decentralized identity management.
 
 ## Technical Context
 
