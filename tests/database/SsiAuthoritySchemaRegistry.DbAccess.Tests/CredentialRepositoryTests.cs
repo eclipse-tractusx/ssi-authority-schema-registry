@@ -55,12 +55,11 @@ public class CredentialRepositoryTests
         var result = await sut.GetCredentials(null, null).ToListAsync();
 
         // Assert
-        result.Should().HaveCount(12).And.Satisfy(
+        result.Should().HaveCount(11).And.Satisfy(
             x => x.CredentialName == "BusinessPartnerNumber" && x.Credential == "BusinessPartnerCredential",
             x => x.CredentialName == "Membership" && x.Credential == "MembershipCredential",
             x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
             x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "Framework Quality",
             x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
             x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
             x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
@@ -94,10 +93,9 @@ public class CredentialRepositoryTests
         var result = await sut.GetCredentials(null, CredentialTypeId.Framework).ToListAsync();
 
         // Assert
-        result.Should().HaveCount(9).And.Satisfy(
+        result.Should().HaveCount(8).And.Satisfy(
             x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
             x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "Framework Quality",
             x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
             x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
             x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
