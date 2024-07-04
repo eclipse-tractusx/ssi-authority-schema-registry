@@ -52,12 +52,11 @@ public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFix
         var data = await _client.GetFromJsonAsync<IEnumerable<CredentialData>>($"{BaseUrl}/credentials", JsonOptions);
 
         // Assert
-        data.Should().NotBeNull().And.HaveCount(12).And.Satisfy(
+        data.Should().NotBeNull().And.HaveCount(11).And.Satisfy(
             x => x.CredentialName == "BusinessPartnerNumber" && x.Credential == "BusinessPartnerCredential",
             x => x.CredentialName == "Membership" && x.Credential == "MembershipCredential",
             x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
             x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "Framework Quality",
             x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
             x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
             x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
@@ -86,10 +85,9 @@ public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFix
         var data = await _client.GetFromJsonAsync<IEnumerable<CredentialData>>($"{BaseUrl}/credentials?credentialTypeId={CredentialTypeId.Framework}", JsonOptions);
 
         // Assert
-        data.Should().HaveCount(9).And.Satisfy(
+        data.Should().HaveCount(8).And.Satisfy(
             x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
             x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "Framework Quality",
             x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
             x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
             x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
