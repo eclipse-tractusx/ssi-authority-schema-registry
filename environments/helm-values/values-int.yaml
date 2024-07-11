@@ -21,16 +21,17 @@ ingress:
   enabled: true
   className: "nginx"
   annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: "8m"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "http://localhost:3000, https://*.dev.demo.catena-x.net"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://localhost:3000, https://*.int.catena-x.net"
   tls:
-    - secretName: "tls-secret"
+    - secretName: "ssi-authority-schema-registry.int.catena-x.net-tls"
       hosts:
-        - "ssi-authority-schema-registry-pen.dev.demo.catena-x.net"
+        - "ssi-authority-schema-registry.int.catena-x.net"
   hosts:
-    - host: "ssi-authority-schema-registry-pen.dev.demo.catena-x.net"
+    - host: "ssi-authority-schema-registry.int.catena-x.net"
       paths:
         - path: "/api"
           pathType: "Prefix"
@@ -43,10 +44,8 @@ service:
 migrations:
   logging:
     default: "Debug"
-  seeding:
-    testDataEnvironments: "consortia"
 
 postgresql:
   auth:
-    postgresPassword: "<path:portal/data/ssi-authority-schema-registry/pen/postgres#postgres-password>"
-    password: "<path:portal/data/ssi-authority-schema-registry/pen/postgres#password>"
+    postgresPassword: "<path:portal/data/ssi-authority-schema-registry/int/postgres#postgres-password>"
+    password: "<path:portal/data/ssi-authority-schema-registry/int/postgres#password>"

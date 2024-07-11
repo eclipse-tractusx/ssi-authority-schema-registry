@@ -28,14 +28,11 @@ spec:
   source:
     path: charts/ssi-asr
     repoURL: 'https://github.com/eclipse-tractusx/ssi-authority-schema-registry.git'
-    targetRevision: main
+    targetRevision: ssi-asr-1.0.0-rc.1
     plugin:
       env:
         - name: AVP_SECRET
           value: vault-secret
         - name: helm_args
-          value: '-f values.yaml -f ../../consortia/environments/values-dev.yaml'
+          value: '-f values.yaml -f ../../environments/helm-values/values-int.yaml'
   project: project-portal
-  syncPolicy:
-    automated:
-      prune: true
