@@ -21,13 +21,12 @@ name: Release
 
 on:
   workflow_dispatch:
-  # TODO: uncomment after the first release
-  # push:
-  #   paths:
-  #     - 'charts/**'
-  #   branches:
-  #     - 'main'
-  #     - 'release/v*.*.*'
+  push:
+    paths:
+      - 'charts/**'
+    branches:
+      - 'main'
+      - 'release/v*.*.*'
 
 jobs:
   release-helm-chart:
