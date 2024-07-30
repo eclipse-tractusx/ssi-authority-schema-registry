@@ -3,10 +3,10 @@
 |                           |                                                                                                          |
 | :------------------------ | :------------------------------------------------------------------------------------------------------- |
 | Contact for product       | [@evegufy](https://github.com/evegufy) <br> [@jjeroch](https://github.com/jjeroch)                       |
-| Security responsible      | tbd                                                                                                      |
+| Security responsible      |                                                                                                          |
 | Version number of product | 1.0.0                                                                                                    |
-| Dates of assessment       | tbd                                                                                                      |
-| Status of assessment      | tdb                                                                                                      |
+| Dates of assessment       | 24.07.2024                                                                                               |
+| Status of assessment      | ASSESSMENT DONE & APPROVED                                                                               |
 
 ## Product Description
 
@@ -60,11 +60,26 @@ N/A
 
 ## Threats & Risks
 
-tbd
+N/A - No direct threats & vulnerabilities detected during the assessment, taking into account already implemented security controls & requirements.
 
 ### Mitigated Threats
 
 N/A
+
+### Implemented Security Controls
+
+- Authentication & Authorization Concept
+  - As per the Association "business requirements", SSI Authority & Schema Registry Product is publicly available, even if the customers are not part of Catena-X. Therefore no authentication, authorization & session management concepts were implemented.  
+- Data Storage & Encryption
+  - Data Stored within the Registry DB (Postgres) is publicly available and not confidential information. No encryption requirements for data at rest is required.
+- API Security
+  - API is publicly available and may be accessed by Everyone.
+  - Two endpoints are available, for both functionalities of the application :
+      1. Read-only Get Endpoint - to receive information about available credentials and their authorities
+      2. Read-only Post Endpoint - to validate credential schemas
+  - Rate limiting configuration is available, once properly configured by the "Operating Company" will grant the availability controls for the application.
+- Logging & Monitoring
+  - All actions & requests performed by the Customers are logged in and stored within the application database with possibility for further audit, investigation & active monitoring, which may be configured by the "Operating Company"
 
 ### Performed Security Checks
 
