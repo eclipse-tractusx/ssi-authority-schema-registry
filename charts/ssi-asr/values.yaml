@@ -21,6 +21,7 @@ service:
   image:
     name: "docker.io/tractusx/ssi-authority-schema-registry-service"
     tag: ""
+    pullSecrets: []
   imagePullPolicy: "IfNotPresent"
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
