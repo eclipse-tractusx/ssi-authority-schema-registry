@@ -52,18 +52,11 @@ public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFix
         var data = await _client.GetFromJsonAsync<IEnumerable<CredentialData>>($"{BaseUrl}/credentials", JsonOptions);
 
         // Assert
-        data.Should().NotBeNull().And.HaveCount(11).And.Satisfy(
-            x => x.CredentialName == "BusinessPartnerNumber" && x.Credential == "BusinessPartnerCredential",
-            x => x.CredentialName == "Membership" && x.Credential == "MembershipCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PurisCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BusinessPartnerCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BehavioralTwinCredential",
-            x => x.CredentialName == "CompanyRole" && x.Credential == "DismantlerCredential"
+        data.Should().NotBeNull().And.HaveCount(4).And.Satisfy(
+            x => x.CredentialName == "BusinessPartnerNumber" && x.Credential == "BusinessPartnerCredential" && x.Authorities.Count() == 1,
+            x => x.CredentialName == "Membership" && x.Credential == "MembershipCredential" && x.Authorities.Count() == 1,
+            x => x.CredentialName == "CompanyRole" && x.Credential == "DismantlerCredential" && x.Authorities.Count() == 2,
+            x => x.CredentialName == "Framework" && x.Credential == "DataExchangeGovernanceCredential" && x.Authorities.Count() == 1
         );
     }
 
@@ -85,15 +78,8 @@ public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFix
         var data = await _client.GetFromJsonAsync<IEnumerable<CredentialData>>($"{BaseUrl}/credentials?credentialTypeId={CredentialTypeId.Framework}", JsonOptions);
 
         // Assert
-        data.Should().HaveCount(8).And.Satisfy(
-            x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PurisCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BusinessPartnerCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BehavioralTwinCredential");
+        data.Should().HaveCount(1).And.Satisfy(
+            x => x.CredentialName == "Framework" && x.Credential == "DataExchangeGovernanceCredential");
     }
 
     #endregion
