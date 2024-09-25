@@ -55,18 +55,11 @@ public class CredentialRepositoryTests
         var result = await sut.GetCredentials(null, null).ToListAsync();
 
         // Assert
-        result.Should().HaveCount(11).And.Satisfy(
+        result.Should().HaveCount(4).And.Satisfy(
             x => x.CredentialName == "BusinessPartnerNumber" && x.Credential == "BusinessPartnerCredential",
             x => x.CredentialName == "Membership" && x.Credential == "MembershipCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PurisCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BusinessPartnerCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BehavioralTwinCredential",
-            x => x.CredentialName == "CompanyRole" && x.Credential == "DismantlerCredential");
+            x => x.CredentialName == "CompanyRole" && x.Credential == "DismantlerCredential",
+            x => x.CredentialName == "Framework" && x.Credential == "DataExchangeGovernanceCredential");
     }
 
     [Fact]
@@ -93,15 +86,8 @@ public class CredentialRepositoryTests
         var result = await sut.GetCredentials(null, CredentialTypeId.Framework).ToListAsync();
 
         // Assert
-        result.Should().HaveCount(8).And.Satisfy(
-            x => x.CredentialName == "Framework" && x.Credential == "TraceabilityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "QualityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "CircularEconomyCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PcfCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "DemandCapacityCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "PurisCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BusinessPartnerCredential",
-            x => x.CredentialName == "Framework" && x.Credential == "BehavioralTwinCredential");
+        result.Should().ContainSingle().And.Satisfy(
+            x => x.CredentialName == "Framework" && x.Credential == "DataExchangeGovernanceCredential");
     }
 
     #endregion
