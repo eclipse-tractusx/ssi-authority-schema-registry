@@ -90,7 +90,7 @@ public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFix
     public async Task CheckSwagger_ReturnsExpected()
     {
         // Act
-        var response = await _client.GetAsync($"{BaseUrl}/swagger/v1/swagger.json");
+        var response = await _client.GetAsync($"{BaseUrl}/swagger");
 
         // Assert
         response.Should().NotBeNull();

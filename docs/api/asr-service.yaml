@@ -1,0 +1,159 @@
+openapi: 3.0.1
+info:
+  title: Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service
+  version: v1.0.0
+paths:
+  /api/registry/credentials:
+    get:
+      tags:
+        - 'Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'
+      summary: Gets all credentials with optional filter possibilities
+      description: 'Example: GET: api/registry/credentials'
+      parameters:
+        - name: bpnl
+          in: query
+          schema:
+            type: string
+        - name: credentialTypeId
+          in: query
+          schema:
+            $ref: '#/components/schemas/CredentialTypeId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CredentialData'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/schema/validate:
+    post:
+      tags:
+        - 'Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'
+      summary: Gets all credentials with optional filter possibilities
+      description: 'Example: POST: api/schema/validate'
+      parameters:
+        - name: schemaType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/CredentialSchemaType'
+      requestBody:
+        content:
+          application/json:
+            schema: { }
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CredentialData:
+      type: object
+      properties:
+        credentialName:
+          type: string
+        credential:
+          type: string
+        authorities:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    CredentialSchemaType:
+      enum:
+        - BusinessPartnerCredential
+        - DismantlerCredential
+        - FrameworkCredential
+        - MembershipCredential
+      type: string
+    CredentialTypeId:
+      enum:
+        - BusinessPartnerNumber
+        - Membership
+        - Framework
+        - CompanyRole
+      type: string
+    ErrorDetails:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        type:
+          type: string
+        message:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorParameter'
+      additionalProperties: false
+    ErrorParameter:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      additionalProperties: false
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        errorId:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetails'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\""
+      name: Authorization
+      in: header
+security:
+  - Bearer: [ ]

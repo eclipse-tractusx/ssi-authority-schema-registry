@@ -19,3 +19,5 @@
 
 product: "SSI Authority & Schema Registry"
 leadingRepository: "https://github.com/eclipse-tractusx/ssi-authority-schema-registry"
+openApiSpecs:
+- "https://raw.githubusercontent.com/eclipse-tractusx/ssi-authority-schema-registry/refs/tags/v1.1.0/docs/api/asr-service.yaml"
