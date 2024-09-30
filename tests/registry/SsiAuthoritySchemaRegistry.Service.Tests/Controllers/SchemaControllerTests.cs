@@ -49,8 +49,7 @@ public class SchemaControllerTests(IntegrationTestFactory factory) : IClassFixtu
                                       {
                                           "@context": [
                                               "https://www.w3.org/2018/credentials/v1",
-                                              "https://w3id.org/security/suites/jws-2020/v1",
-                                              "https://raw.githubusercontent.com/catenax-ng/product-coreschemas/main/businessPartnerData"
+                                              "https://w3id.org/security/suites/jws-2020/v1"
                                           ],
                                           "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
                                           "issuer": "test",
@@ -98,8 +97,7 @@ public class SchemaControllerTests(IntegrationTestFactory factory) : IClassFixtu
                                         {
                                             "@context": [
                                                 "https://www.w3.org/2018/credentials/v1",
-                                                "https://w3id.org/security/suites/jws-2020/v1",
-                                                "https://raw.githubusercontent.com/catenax-ng/product-coreschemas/main/businessPartnerData"
+                                                "https://w3id.org/security/suites/jws-2020/v1"
                                             ],
                                             "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
                                             "issuer": "test",
@@ -147,8 +145,7 @@ public class SchemaControllerTests(IntegrationTestFactory factory) : IClassFixtu
                                       {
                                           "@context": [
                                               "https://www.w3.org/2018/credentials/v1",
-                                              "https://w3id.org/security/suites/jws-2020/v1",
-                                              "https://raw.githubusercontent.com/catenax-ng/product-coreschemas/main/businessPartnerData"
+                                              "https://w3id.org/security/suites/jws-2020/v1"
                                           ],
                                           "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
                                           "issuer": "test",
@@ -199,8 +196,7 @@ public class SchemaControllerTests(IntegrationTestFactory factory) : IClassFixtu
                                       {
                                           "@context": [
                                               "https://www.w3.org/2018/credentials/v1",
-                                              "https://w3id.org/security/suites/jws-2020/v1",
-                                              "https://raw.githubusercontent.com/catenax-ng/product-coreschemas/main/businessPartnerData"
+                                              "https://w3id.org/security/suites/jws-2020/v1"
                                           ],
                                           "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
                                           "issuer": "test",
