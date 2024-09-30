@@ -128,7 +128,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://w3id.org/security/suites/jws-2020/v1\",\n        \"https://raw.githubusercontent.com/catenax-ng/product-coreschemas/main/businessPartnerData\"\n    ],\n    \"id\": \"6b74cd89-6c25-4e3c-9fb7-3ee15c803afc\",\n    \"issuer\": \"test\",\n    \"type\": [\n        \"VerifiableCredential\",\n        \"MembershipCredential\"\n    ],\n    \"issuanceDate\": \"2024-05-29T01:01:01Z\",\n    \"expirationDate\": \"2024-12-31T23:59:59Z\",\n    \"credentialSubject\": {\n        \"id\": \"6b74cd89-6c25-4e3c-9fb7-3ee15c803afc\",\n        \"holderIdentifier\": \"Test\",\n        \"memberOf\": \"catena-x\"\n    }\n}",
+											"raw": "{\n    \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://w3id.org/security/suites/jws-2020/v1\"\n    ],\n    \"id\": \"6b74cd89-6c25-4e3c-9fb7-3ee15c803afc\",\n    \"issuer\": \"test\",\n    \"type\": [\n        \"VerifiableCredential\",\n        \"MembershipCredential\"\n    ],\n    \"issuanceDate\": \"2024-05-29T01:01:01Z\",\n    \"expirationDate\": \"2024-12-31T23:59:59Z\",\n    \"credentialSubject\": {\n        \"id\": \"6b74cd89-6c25-4e3c-9fb7-3ee15c803afc\",\n        \"holderIdentifier\": \"Test\",\n        \"memberOf\": \"catena-x\"\n    }\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
