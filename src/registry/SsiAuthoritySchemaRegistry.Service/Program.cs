@@ -17,15 +17,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+using Org.Eclipse.TractusX.Portal.Backend.Framework.Models.Extensions;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.Web;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.DependencyInjection;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Controllers;
 using System.Text.Json.Serialization;
 
-const string Version = "v1";
+var version = AssemblyExtension.GetApplicationVersion();
 
 await WebApplicationBuildRunner
-    .BuildAndRunWebApplicationAsync<Program>(args, "registry", Version, ".Registry",
+    .BuildAndRunWebApplicationAsync<Program>(args, "registry", version, ".Registry",
         builder =>
         {
             builder.Services.AddEndpointsApiExplorer();

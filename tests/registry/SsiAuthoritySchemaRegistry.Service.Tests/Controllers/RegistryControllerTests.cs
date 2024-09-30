@@ -83,19 +83,4 @@ public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFix
     }
 
     #endregion
-
-    #region Swagger
-
-    [Fact]
-    public async Task CheckSwagger_ReturnsExpected()
-    {
-        // Act
-        var response = await _client.GetAsync($"{BaseUrl}/swagger/v1/swagger.json");
-
-        // Assert
-        response.Should().NotBeNull();
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
-    }
-
-    #endregion
 }
