@@ -27,7 +27,8 @@ using Xunit;
 
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Tests.Controllers;
 
-public class SchemaControllerTests(IntegrationTestFactory factory) : IClassFixture<IntegrationTestFactory>
+public class SchemaControllerTests(IntegrationTestFactory factory)
+    : IClassFixture<IntegrationTestFactory>
 {
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -39,197 +40,156 @@ public class SchemaControllerTests(IntegrationTestFactory factory) : IClassFixtu
     private const string BaseUrl = "/api/schema";
     private readonly HttpClient _client = factory.CreateClient();
 
+    private readonly JsonDocument _businessPartnerSchema = JsonDocument.Parse("""
+                                                                              {
+                                                                                  "@context": [
+                                                                                      "https://www.w3.org/2018/credentials/v1",
+                                                                                      "https://w3id.org/security/suites/jws-2020/v1"
+                                                                                  ],
+                                                                                  "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                                  "issuer": "test",
+                                                                                  "type": [
+                                                                                      "VerifiableCredential",
+                                                                                      "BpnCredential"
+                                                                                  ],
+                                                                                  "issuanceDate": "2024-05-29T01:01:01Z",
+                                                                                  "expirationDate": "2024-05-29T01:01:01Z",
+                                                                                  "credentialSubject": {
+                                                                                      "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                                      "holderIdentifier": "BPNL00000001TEST",
+                                                                                      "bpn": "BPNL00000003CRHL"
+                                                                                  }
+                                                                              }
+                                                                              """);
+
+    private readonly JsonDocument _frameworkSchema = JsonDocument.Parse("""
+                                                                {
+                                                                    "@context": [
+                                                                        "https://www.w3.org/2018/credentials/v1",
+                                                                        "https://w3id.org/security/suites/jws-2020/v1"
+                                                                    ],
+                                                                    "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                    "issuer": "test",
+                                                                    "type": [
+                                                                        "VerifiableCredential",
+                                                                        "MembershipCredential"
+                                                                    ],
+                                                                    "issuanceDate": "2024-05-29T01:01:01Z",
+                                                                    "expirationDate": "2024-12-31T23:59:59Z",
+                                                                    "credentialSubject": {
+                                                                        "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                        "holderIdentifier": "Test",
+                                                                        "group": "UseCaseFramework",
+                                                                        "useCase": "16c1029e-c4af-47e6-9c33-a144625cc7ac",
+                                                                        "contractTemplate": "https://example.org/temp-1",
+                                                                        "contractVersion": "1.0"
+                                                                    }
+                                                                }
+                                                                """);
+
+    private readonly JsonDocument _dismantlerSchema = JsonDocument.Parse("""
+                                                               {
+                                                                   "@context": [
+                                                                       "https://www.w3.org/2018/credentials/v1",
+                                                                       "https://w3id.org/security/suites/jws-2020/v1"
+                                                                   ],
+                                                                   "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                   "issuer": "test",
+                                                                   "type": [
+                                                                       "VerifiableCredential",
+                                                                       "MembershipCredential"
+                                                                   ],
+                                                                   "issuanceDate": "2024-05-29T01:01:01Z",
+                                                                   "expirationDate": "2024-12-31T23:59:59Z",
+                                                                   "credentialSubject": {
+                                                                       "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                       "holderIdentifier": "Test",
+                                                                       "allowedVehicleBrands": [ "BMW", "Mercedes" ]
+                                                                   }
+                                                               }
+                                                               """);
+
+    private readonly JsonDocument _membershipSchema = JsonDocument.Parse("""
+                                                                         {
+                                                                             "@context": [
+                                                                                 "https://www.w3.org/2018/credentials/v1",
+                                                                                 "https://w3id.org/security/suites/jws-2020/v1"
+                                                                             ],
+                                                                             "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                             "issuer": "test",
+                                                                             "type": [
+                                                                                 "VerifiableCredential",
+                                                                                 "MembershipCredential"
+                                                                             ],
+                                                                             "issuanceDate": "2024-05-29T01:01:01Z",
+                                                                             "expirationDate": "2024-12-31T23:59:59Z",
+                                                                             "credentialSubject": {
+                                                                                 "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
+                                                                                 "holderIdentifier": "Test",
+                                                                                 "memberOf": "catena-x"
+                                                                             }
+                                                                         }
+                                                                         """);
+
     #region Validate
 
-    [Fact]
-    public async Task Validate_WithValidBusinessPartner_ReturnsTrue()
+    [Theory]
+    [InlineData(CredentialSchemaType.FrameworkCredential, true)]
+    [InlineData(CredentialSchemaType.FrameworkCredential, false)]
+    [InlineData(CredentialSchemaType.BusinessPartnerCredential, true)]
+    [InlineData(CredentialSchemaType.BusinessPartnerCredential, false)]
+    [InlineData(CredentialSchemaType.MembershipCredential, true)]
+    [InlineData(CredentialSchemaType.MembershipCredential, false)]
+    [InlineData(CredentialSchemaType.DismantlerCredential, true)]
+    [InlineData(CredentialSchemaType.DismantlerCredential, false)]
+    public async Task Validate_WithValidSchema_ReturnsTrue(CredentialSchemaType schemaType, bool withSchemaTypeQueryParam)
     {
         // Arrange
-        var json = JsonDocument.Parse("""
-                                      {
-                                          "@context": [
-                                              "https://www.w3.org/2018/credentials/v1",
-                                              "https://w3id.org/security/suites/jws-2020/v1"
-                                          ],
-                                          "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                          "issuer": "test",
-                                          "type": [
-                                              "VerifiableCredential",
-                                              "BpnCredential"
-                                          ],
-                                          "issuanceDate": "2024-05-29T01:01:01Z",
-                                          "expirationDate": "2024-05-29T01:01:01Z",
-                                          "credentialSubject": {
-                                              "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                              "holderIdentifier": "BPNL00000001TEST",
-                                              "bpn": "BPNL00000003CRHL"
-                                          }
-                                      }
-                                      """);
+        var json = schemaType switch
+        {
+            CredentialSchemaType.DismantlerCredential => _dismantlerSchema,
+            CredentialSchemaType.BusinessPartnerCredential => _businessPartnerSchema,
+            CredentialSchemaType.FrameworkCredential => _frameworkSchema,
+            CredentialSchemaType.MembershipCredential => _membershipSchema,
+            _ => throw new ArgumentOutOfRangeException(nameof(schemaType), schemaType, null)
+        };
 
         // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.BusinessPartnerCredential}", json, JsonOptions);
+        var requestUri = $"{BaseUrl}/validate";
+        if (withSchemaTypeQueryParam)
+        {
+            requestUri = $"{requestUri}?schemaType={schemaType}";
+        }
+
+        var data = await _client.PostAsJsonAsync(requestUri, json, JsonOptions);
 
         // Assert
         var result = await data.Content.ReadFromJsonAsync<bool>();
         result.Should().BeTrue();
     }
 
-    [Fact]
-    public async Task Validate_WithInvalidBusinessPartner_ReturnsFalse()
+    [Theory]
+    [InlineData(CredentialSchemaType.FrameworkCredential, true)]
+    [InlineData(CredentialSchemaType.FrameworkCredential, false)]
+    [InlineData(CredentialSchemaType.BusinessPartnerCredential, true)]
+    [InlineData(CredentialSchemaType.BusinessPartnerCredential, false)]
+    [InlineData(CredentialSchemaType.MembershipCredential, true)]
+    [InlineData(CredentialSchemaType.MembershipCredential, false)]
+    [InlineData(CredentialSchemaType.DismantlerCredential, true)]
+    [InlineData(CredentialSchemaType.DismantlerCredential, false)]
+    public async Task Validate_WithInvalid_ReturnsFalse(CredentialSchemaType schemaType, bool withSchemaTypeQueryParam)
     {
         // Arrange
         var json = JsonDocument.Parse("{}");
 
         // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.BusinessPartnerCredential}", json, JsonOptions);
+        var requestUri = $"{BaseUrl}/validate";
+        if (withSchemaTypeQueryParam)
+        {
+            requestUri = $"{requestUri}?schemaType={schemaType}";
+        }
 
-        // Assert
-        var result = await data.Content.ReadFromJsonAsync<bool>(JsonOptions);
-        result.Should().BeFalse();
-    }
-
-    [Fact]
-    public async Task Validate_WithValidDismantler_ReturnsTrue()
-    {
-        // Arrange
-        var schema = JsonDocument.Parse("""
-                                        {
-                                            "@context": [
-                                                "https://www.w3.org/2018/credentials/v1",
-                                                "https://w3id.org/security/suites/jws-2020/v1"
-                                            ],
-                                            "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                            "issuer": "test",
-                                            "type": [
-                                                "VerifiableCredential",
-                                                "MembershipCredential"
-                                            ],
-                                            "issuanceDate": "2024-05-29T01:01:01Z",
-                                            "expirationDate": "2024-12-31T23:59:59Z",
-                                            "credentialSubject": {
-                                                "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                                "holderIdentifier": "Test",
-                                                "allowedVehicleBrands": [ "BMW", "Mercedes" ]
-                                            }
-                                        }
-                                        """);
-
-        // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.DismantlerCredential}", schema, JsonOptions);
-
-        // Assert
-        var result = await data.Content.ReadFromJsonAsync<bool>();
-        result.Should().BeTrue();
-    }
-
-    [Fact]
-    public async Task Validate_WithInvalidDismantler_ReturnsFalse()
-    {
-        // Arrange
-        var json = JsonDocument.Parse("{}");
-
-        // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.DismantlerCredential}", json, JsonOptions);
-
-        // Assert
-        var result = await data.Content.ReadFromJsonAsync<bool>();
-        result.Should().BeFalse();
-    }
-
-    [Fact]
-    public async Task Validate_WithValidFramework_ReturnsTrue()
-    {
-        // Arrange
-        var json = JsonDocument.Parse("""
-                                      {
-                                          "@context": [
-                                              "https://www.w3.org/2018/credentials/v1",
-                                              "https://w3id.org/security/suites/jws-2020/v1"
-                                          ],
-                                          "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                          "issuer": "test",
-                                          "type": [
-                                              "VerifiableCredential",
-                                              "MembershipCredential"
-                                          ],
-                                          "issuanceDate": "2024-05-29T01:01:01Z",
-                                          "expirationDate": "2024-12-31T23:59:59Z",
-                                          "credentialSubject": {
-                                              "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                              "holderIdentifier": "Test",
-                                              "group": "UseCaseFramework",
-                                              "useCase": "16c1029e-c4af-47e6-9c33-a144625cc7ac",
-                                              "contractTemplate": "https://example.org/temp-1",
-                                              "contractVersion": "1.0"
-                                          }
-                                      }
-                                      """);
-
-        // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.FrameworkCredential}", json, JsonOptions);
-
-        // Assert
-        var result = await data.Content.ReadFromJsonAsync<bool>();
-        result.Should().BeTrue();
-    }
-
-    [Fact]
-    public async Task Validate_WithInvalidFramework_ReturnsFalse()
-    {
-        // Arrange
-        var json = JsonDocument.Parse("{}");
-
-        // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.FrameworkCredential}", json, JsonOptions);
-
-        // Assert
-        var result = await data.Content.ReadFromJsonAsync<bool>();
-        result.Should().BeFalse();
-    }
-
-    [Fact]
-    public async Task Validate_WithValidMembership_ReturnsTrue()
-    {
-        // Arrange
-        var json = JsonDocument.Parse("""
-                                      {
-                                          "@context": [
-                                              "https://www.w3.org/2018/credentials/v1",
-                                              "https://w3id.org/security/suites/jws-2020/v1"
-                                          ],
-                                          "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                          "issuer": "test",
-                                          "type": [
-                                              "VerifiableCredential",
-                                              "MembershipCredential"
-                                          ],
-                                          "issuanceDate": "2024-05-29T01:01:01Z",
-                                          "expirationDate": "2024-12-31T23:59:59Z",
-                                          "credentialSubject": {
-                                              "id": "6b74cd89-6c25-4e3c-9fb7-3ee15c803afc",
-                                              "holderIdentifier": "Test",
-                                              "memberOf": "catena-x"
-                                          }
-                                      }
-                                      """);
-
-        // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.MembershipCredential}", json, JsonOptions);
-
-        // Assert
-        var result = await data.Content.ReadFromJsonAsync<bool>();
-        result.Should().BeTrue();
-    }
-
-    [Fact]
-    public async Task Validate_WithInvalidMembership_ReturnsFalse()
-    {
-        // Arrange
-        var json = JsonDocument.Parse("{}");
-
-        // Act
-        var data = await _client.PostAsJsonAsync($"{BaseUrl}/validate?schemaType={CredentialSchemaType.MembershipCredential}", json, JsonOptions);
+        var data = await _client.PostAsJsonAsync(requestUri, json, JsonOptions);
 
         // Assert
         var result = await data.Content.ReadFromJsonAsync<bool>();

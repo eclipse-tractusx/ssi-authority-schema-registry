@@ -25,5 +25,5 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.BusinessLogic;
 
 public interface ISchemaBusinessLogic : ITransient
 {
-    Task<bool> Validate(CredentialSchemaType schemaType, JsonDocument content, CancellationToken cancellationToken);
+    Task<bool> Validate(CredentialSchemaType? schemaType, JsonDocument content);
 }
