@@ -20,6 +20,7 @@
 using Json.Schema;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Models;
+using System.Collections.Concurrent;
 using System.Reflection;
 using System.Text.Json;
 
@@ -27,7 +28,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.BusinessLogic;
 
 public class SchemaBusinessLogic : ISchemaBusinessLogic
 {
-    public async Task<bool> Validate(CredentialSchemaType schemaType, JsonDocument content, CancellationToken cancellationToken)
+    public async Task<bool> Validate(CredentialSchemaType? schemaType, JsonDocument content)
     {
         var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         if (location == null)
@@ -35,6 +36,30 @@ public class SchemaBusinessLogic : ISchemaBusinessLogic
             throw new UnexpectedConditionException("Assembly location must be set");
         }
 
+        if (schemaType is not null)
+        {
+            return await ValidateSchema(schemaType.Value, content, location).ConfigureAwait(ConfigureAwaitOptions.None);
+        }
+
+        var options = new ParallelOptions
+        {
+            MaxDegreeOfParallelism = 2
+        };
+
+        var typeResult = false;
+        await Parallel.ForEachAsync(Enum.GetValues<CredentialSchemaType>(), options, async (type, _) =>
+            {
+                if (await ValidateSchema(type, content, location).ConfigureAwait(ConfigureAwaitOptions.None))
+                {
+                    typeResult = true;
+                }
+            })
+        .ConfigureAwait(ConfigureAwaitOptions.None);
+        return typeResult;
+    }
+
+    private static async Task<bool> ValidateSchema(CredentialSchemaType schemaType, JsonDocument content, string location)
+    {
         var path = Path.Combine(location, "Schemas", $"{schemaType}.schema.json");
         var schema = await JsonSchema.FromStream(File.OpenRead(path)).ConfigureAwait(false);
         SchemaRegistry.Global.Register(schema);
