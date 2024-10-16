@@ -67,7 +67,6 @@ This section describes overall, principal regulations and solution ideas that ar
 ## 9. Architecture Decisions
 
 The architecture decisions document outlines the key architecture decisions made during the project, including the rationale and implications of each decision.
-This chapter documents significant.
 
 ## 10. [Quality Requirements](./architecture/Requirements.md)
 
