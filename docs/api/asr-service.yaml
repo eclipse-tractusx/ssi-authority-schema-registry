@@ -48,7 +48,6 @@ paths:
       parameters:
         - name: schemaType
           in: query
-          required: true
           schema:
             $ref: '#/components/schemas/CredentialSchemaType'
       requestBody:
