@@ -46,9 +46,9 @@ flowchart LR
 
 ### Additional information
 
-* The customer can request the available credentials with their providing authorities.
-* It is possible to validate the schema of credentials.
-* All actions are logged within the Registry DB.
+- The customer can request the available credentials with their providing authorities.
+- It is possible to validate the schema of credentials.
+- All actions are logged within the Registry DB.
 
 ### Changes compared to last Security Assessment
 
@@ -96,4 +96,4 @@ This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LIC
 
 - SPDX-License-Identifier: Apache-2.0
 - SPDX-FileCopyrightText: 2024 Contributors to the Eclipse Foundation
-- Source URL: https://github.com/eclipse-tractusx/ssi-authority-schema-registry
+- Source URL: <https://github.com/eclipse-tractusx/ssi-authority-schema-registry>

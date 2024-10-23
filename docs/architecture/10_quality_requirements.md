@@ -1,4 +1,4 @@
-# Requirements overview
+# Quality Requirements
 
 The development and deployment of the Self-Sovereign Identity (SSI) Authority & Schema Registry necessitate a comprehensive set of requirements that span across various domains including functional, security, performance, and usability aspects. This overview encapsulates the fundamental requirements that will guide the design and implementation of the SSI Authority & Schema Registry to ensure it meets the intended objectives and user needs.
 
@@ -39,4 +39,4 @@ This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LIC
 
 - SPDX-License-Identifier: Apache-2.0
 - SPDX-FileCopyrightText: 2024 Contributors to the Eclipse Foundation
-- Source URL: https://github.com/eclipse-tractusx/ssi-authority-schema-registry
+- Source URL: <https://github.com/eclipse-tractusx/ssi-authority-schema-registry>

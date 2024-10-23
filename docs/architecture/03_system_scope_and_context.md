@@ -1,4 +1,4 @@
-# Context and Scope
+# System Scope and Context
 
 ## Business Context
 
@@ -31,4 +31,4 @@ This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LIC
 
 - SPDX-License-Identifier: Apache-2.0
 - SPDX-FileCopyrightText: 2024 Contributors to the Eclipse Foundation
-- Source URL: https://github.com/eclipse-tractusx/ssi-authority-schema-registry
+- Source URL: <https://github.com/eclipse-tractusx/ssi-authority-schema-registry>
