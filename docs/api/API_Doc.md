@@ -1,11 +1,6 @@
-# Interface Documentation
+# API Documentation
 
-This document provides information on the interfaces. It more or less links you to the relevant sections in other
-documentations.
-
-## Overview of Data Exchange Interfaces
-
-The [Building Block View](../architecture/05_building_block_view.md) provides an overview.
+This document provides information on the endpoints.
 
 ## OpenAPI Specifications
 
