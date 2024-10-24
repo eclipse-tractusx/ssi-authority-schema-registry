@@ -20,7 +20,6 @@
 using Json.Schema;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Models;
-using System.Collections.Concurrent;
 using System.Reflection;
 using System.Text.Json;
 

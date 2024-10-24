@@ -42,7 +42,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Tests.Setup;
 public class IntegrationTestFactory : WebApplicationFactory<RegistryBusinessLogic>, IAsyncLifetime
 {
     private static readonly string[] TestDataEnvironments = ["test"];
-    private static readonly string[] DataPaths = ["Seeder/Data"];
+    private static readonly string[] DataPaths = ["Seeder/Data", "Seeder/Data/overwrite"];
 
     private readonly PostgreSqlContainer _container = new PostgreSqlBuilder()
         .WithDatabase("test_db")
