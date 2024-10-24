@@ -71,12 +71,6 @@ spec:
             value: "Seeder/Data/"
           - name: "SEEDING__DATAPATHS__1"
             value: "Seeder/Data/overwrite"
-          {{- if and (.Values.migrations.seeding.seedTestData.useOwnConfigMap.configMap) (.Values.migrations.seeding.seedTestData.useOwnConfigMap.filename) }}
-          - name: "SEEDING__DATAPATHS__2"
-            value: "Seeder/Data/import/custom-test-data"
-          - name: "SEEDING__TESTDATAENVIRONMENTS__2"
-            value: "{{ .Values.migrations.seeding.seedTestData.useOwnConfigMap.filename }}"
-          {{- end }}
           - name: "SERILOG__MINIMUMLEVEL__Default"
             value: "{{ .Values.migrations.logging.default }}"
         ports:
