@@ -2,7 +2,7 @@
 
 ## Build, test, deploy
 
-Details to the build, test and deploy process can get found under the following md file: [Release Process](/docs/technical-documentation/release-process/Release%20Process.md)
+Details to the build, test and deploy process can get found under the following md file: [Release Process](/docs/admin/release-process/Release%20Process.md)
 
 ## Development Guidelines
 
@@ -128,4 +128,4 @@ This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LIC
 
 - SPDX-License-Identifier: Apache-2.0
 - SPDX-FileCopyrightText: 2024 Contributors to the Eclipse Foundation
-- Source URL: https://github.com/eclipse-tractusx/ssi-authority-schema-registry
+- Source URL: <https://github.com/eclipse-tractusx/ssi-authority-schema-registry>

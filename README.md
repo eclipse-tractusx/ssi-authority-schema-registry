@@ -2,7 +2,7 @@
 
 This repository contains the backend code for the SSI Authority & Schema Registry (SSI ASR) written in C#.
 
-For **information about the SSI Authority & Schema Registry**, please refer to the documentation, especially the context and scope section in the [architecture documentation](./docs/architecture).
+For **information about the SSI Authority & Schema Registry**, please refer to the documentation, especially the context and scope section in the [architecture documentation](./docs/architecture/Index.md).
 
 For **installation** details, please refer to the [README.md](./charts/ssi-asr/README.md) of the provided helm chart.
 
@@ -34,7 +34,7 @@ See Docker notice files for more information:
 
 ## Contributing
 
-See [Contribution details](/docs/technical-documentation/dev-process/How%20to%20contribute.md).
+See [Contribution details](/docs/admin/dev-process/How%20to%20contribute.md).
 
 ## License
 
