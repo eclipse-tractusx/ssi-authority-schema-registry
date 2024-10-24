@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0-alpha.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.0.0-rc.1...v1.1.0-alpha.1) (2024-10-24)
+
+
+### Features
+
+* add imagePullSecrets ([#52](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/52)) ([7c75f90](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/7c75f908d35692c688a49c98ea3008b66e8693bf))
+* **api-hub:** create open api spec on build ([#66](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/66)) ([edc06c1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/edc06c1c739bdbc679821a8acea79791b2f167a0)), closes [#64](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/64)
+* **framework:** adjust seeding data ([#56](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/56)) ([dd74f2c](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/dd74f2c4bac81938ade7b92af303bdb77cc60f7c)), closes [#3](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/3)
+* **validation:** adjust schema validation ([#76](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/76)) ([4f9a315](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/4f9a3158294b25b52624f68495deef84b9b615e6)), closes [#34](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/34)
+
+
+### Miscellaneous Chores
+
+* release 1.1.0-alpha.1 ([93097f0](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/93097f044fca637efd3e3284245f893a1595121a))
+
 ## 1.0.0-rc.1 (2024-07-16)
 
 

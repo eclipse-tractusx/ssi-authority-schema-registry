@@ -27,7 +27,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: ssi-asr
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.0.0
+    version: 1.1.0-alpha.1
 ```
 
 ## Requirements
@@ -42,6 +42,7 @@ dependencies:
 |-----|------|---------|-------------|
 | service.image.name | string | `"docker.io/tractusx/ssi-authority-schema-registry-service"` |  |
 | service.image.tag | string | `""` |  |
+| service.image.pullSecrets | list | `[]` |  |
 | service.imagePullPolicy | string | `"IfNotPresent"` |  |
 | service.resources | object | `{"limits":{"cpu":"45m","memory":"400M"},"requests":{"cpu":"15m","memory":"400M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
 | service.logging.businessLogic | string | `"Information"` |  |
@@ -55,6 +56,7 @@ dependencies:
 | migrations.name | string | `"migrations"` |  |
 | migrations.image.name | string | `"docker.io/tractusx/ssi-authority-schema-registry-migrations"` |  |
 | migrations.image.tag | string | `""` |  |
+| migrations.image.pullSecrets | list | `[]` |  |
 | migrations.imagePullPolicy | string | `"IfNotPresent"` |  |
 | migrations.resources | object | `{"limits":{"cpu":"75m","memory":"200M"},"requests":{"cpu":"25m","memory":"200M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
 | migrations.seeding.testDataEnvironments | string | `""` |  |
