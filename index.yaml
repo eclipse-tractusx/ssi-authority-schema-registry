@@ -18,6 +18,22 @@ entries:
     - https://github.com/eclipse-tractusx/ssi-authority-schema-registry/releases/download/ssi-asr-1.1.0-alpha.1/ssi-asr-1.1.0-alpha.1.tgz
     version: 1.1.0-alpha.1
   - apiVersion: v2
+    appVersion: 1.1.0-alpha.1
+    created: "2024-10-25T05:41:55.79863778Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.12.x
+    description: Helm chart for SSI Authority & Schema Registry
+    digest: a3291a3a2251becfa880c2424e7e3764021fa4639944f88265a609e82a968d18
+    home: https://github.com/eclipse-tractusx/ssi-authority-schema-registry
+    name: ssi-asr
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/ssi-authority-schema-registry/releases/download/ssi-asr-1.1.0-alpha.1/ssi-asr-1.1.0-alpha.1.tgz
+    version: 1.1.0-alpha.1
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2024-07-30T14:05:37.148752069Z"
     dependencies:
@@ -65,4 +81,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/ssi-authority-schema-registry/releases/download/ssi-asr-1.0.0-rc.1/ssi-asr-1.0.0-rc.1.tgz
     version: 1.0.0-rc.1
-generated: "2024-10-24T20:13:07.085716267Z"
+generated: "2024-10-25T05:41:55.798665121Z"
