@@ -1,12 +1,12 @@
 openapi: 3.0.1
 info:
   title: Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service
-  version: v1.0.0
+  version: v1.1.0-alpha.1
 paths:
   /api/registry/credentials:
     get:
       tags:
-        - 'Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'
+        - 'Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null'
       summary: Gets all credentials with optional filter possibilities
       description: 'Example: GET: api/registry/credentials'
       parameters:
@@ -42,7 +42,7 @@ paths:
   /api/schema/validate:
     post:
       tags:
-        - 'Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'
+        - 'Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null'
       summary: Gets all credentials with optional filter possibilities
       description: 'Example: POST: api/schema/validate'
       parameters:
