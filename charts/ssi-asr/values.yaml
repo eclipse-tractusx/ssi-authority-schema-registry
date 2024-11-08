@@ -17,10 +17,14 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-# -- Set information related to the operator company
-operator:
-  # -- The bpn of the operator
-  bpn: "empty"
+# -- Set information related the authorities
+authorities:
+  # -- The first authority
+  authorityOne:
+    bpn: "BPNL00000003CRHK"
+  # -- The second authority
+  authorityTwo:
+    bpn: "BPNL00000003CRHL"
 
 service:
   image:

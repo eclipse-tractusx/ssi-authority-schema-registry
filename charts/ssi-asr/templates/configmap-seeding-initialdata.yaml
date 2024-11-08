@@ -27,56 +27,33 @@ data:
   authorities.json: |-
     [
         {
-            "bpn": "{{ .Values.operator.bpn }}"
+            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
         },
         {
-            "bpn": "BPNL00000003CRHL"
-        }
-    ]
-  credentials.json: |-
-    [
-        {
-            "id": "255e01fc-65f6-43cd-8dfa-95e95fa95f60",
-            "type_id": 1,
-            "name": "BusinessPartnerCredential"
-        },
-        {
-            "id": "255e01fc-65f6-43cd-8dfa-95e95fa95f61",
-            "type_id": 2,
-            "name": "MembershipCredential"
-        },
-        {
-            "id": "10df6ecd-faa3-45ed-8da5-96261f6542dd",
-            "type_id": 3,
-            "name": "DataExchangeGovernanceCredential"
-        },
-        {
-            "id": "255e01fc-65f6-43cd-8dfa-95e95fa95f6b",
-            "type_id": 4,
-            "name": "DismantlerCredential"
+            "bpn": "{{ .Values.authorities.authorityTwo.bpn }}"
         }
     ]
   credential_authorities.json: |-
     [
         {
             "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f60",
-            "bpn": "{{ .Values.operator.bpn }}"
+            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
         },
         {
             "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f61",
-            "bpn": "{{ .Values.operator.bpn }}"
-        },
-        {
-            "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f6b",
-            "bpn": "{{ .Values.operator.bpn }}"
-        },
-        {
-            "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f6b",
-            "bpn": "BPNL00000003CRHL"
+            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
         },
         {
             "credential_id": "10df6ecd-faa3-45ed-8da5-96261f6542dd",
-            "bpn": "{{ .Values.operator.bpn }}"
+            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
+        },
+        {
+            "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f6b",
+            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
+        },
+        {
+            "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f6b",
+            "bpn": "{{ .Values.authorities.authorityTwo.bpn }}"
         }
     ]
 
