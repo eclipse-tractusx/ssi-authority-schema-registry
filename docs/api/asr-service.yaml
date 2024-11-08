@@ -12,10 +12,12 @@ paths:
       parameters:
         - name: bpnl
           in: query
+          description: 'OPTIONAL: BPNL to filter the response'
           schema:
             type: string
         - name: credentialTypeId
           in: query
+          description: 'OPTIONAL: Type to filter the response'
           schema:
             $ref: '#/components/schemas/CredentialTypeId'
       responses:
@@ -48,6 +50,7 @@ paths:
       parameters:
         - name: schemaType
           in: query
+          description: 'Optional: The type of the schema that should be validated'
           schema:
             $ref: '#/components/schemas/CredentialSchemaType'
       requestBody:
