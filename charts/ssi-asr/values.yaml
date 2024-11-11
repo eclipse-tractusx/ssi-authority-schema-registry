@@ -17,6 +17,15 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
+# -- Set information related the authorities
+authorities:
+  # -- The first authority
+  authorityOne:
+    bpn: "BPNL00000003CRHK"
+  # -- The second authority
+  authorityTwo:
+    bpn: "BPNL00000003CRHL"
+
 service:
   image:
     name: "docker.io/tractusx/ssi-authority-schema-registry-service"
@@ -62,8 +71,9 @@ migrations:
       cpu: 75m
       memory: 200M
   seeding:
-    testDataEnvironments: ""
-    testDataPaths: "Seeder/Data"
+    # -- Enables dynamic seeding of information related to the operator company: operator.bpn;
+    # If set to `true` the data configured in the config map 'configmap-seeding-initialdata.yaml' will be taken to insert the initial data;
+    useInitial: true
   logging:
     default: "Information"
 

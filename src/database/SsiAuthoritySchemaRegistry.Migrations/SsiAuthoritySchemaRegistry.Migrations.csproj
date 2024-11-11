@@ -65,6 +65,9 @@
 
         <None Remove="Seeder\Data" />
         <Content Include="Seeder\Data\**" LinkBase="Seeder\Data" CopyToOutputDirectory="Always" />
+
+        <None Remove="Seeder\Data\overwrite" />
+        <Content Include="Seeder\Data\overwrite\**" LinkBase="Seeder\Data\overwrite" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
     <ItemGroup>
