@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.0-rc.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.1.0-alpha.1...v1.1.0-rc.1) (2024-11-11)
+
+### Features
+
+* **seeding:** make authorities bpn configurable via helm chart ([020d4b7](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/020d4b742c15b119ecfe3f146d91840687ba45f7)), closes [#77](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/77)
+
 ## [1.1.0-alpha.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.0.0-rc.1...v1.1.0-alpha.1) (2024-10-24)
 
 
