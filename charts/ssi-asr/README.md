@@ -27,7 +27,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: ssi-asr
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.1.0-alpha.1
+    version: 1.1.0-rc.1
 ```
 
 ## Requirements
@@ -40,6 +40,9 @@ dependencies:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| authorities | object | `{"authorityOne":{"bpn":"BPNL00000003CRHK"},"authorityTwo":{"bpn":"BPNL00000003CRHL"}}` | Set information related the authorities |
+| authorities.authorityOne | object | `{"bpn":"BPNL00000003CRHK"}` | The first authority |
+| authorities.authorityTwo | object | `{"bpn":"BPNL00000003CRHL"}` | The second authority |
 | service.image.name | string | `"docker.io/tractusx/ssi-authority-schema-registry-service"` |  |
 | service.image.tag | string | `""` |  |
 | service.image.pullSecrets | list | `[]` |  |
@@ -59,8 +62,7 @@ dependencies:
 | migrations.image.pullSecrets | list | `[]` |  |
 | migrations.imagePullPolicy | string | `"IfNotPresent"` |  |
 | migrations.resources | object | `{"limits":{"cpu":"75m","memory":"200M"},"requests":{"cpu":"25m","memory":"200M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
-| migrations.seeding.testDataEnvironments | string | `""` |  |
-| migrations.seeding.testDataPaths | string | `"Seeder/Data"` |  |
+| migrations.seeding.useInitial | bool | `true` | Enables dynamic seeding of information related to the operator company: operator.bpn; If set to `true` the data configured in the config map 'configmap-seeding-initialdata.yaml' will be taken to insert the initial data; |
 | migrations.logging.default | string | `"Information"` |  |
 | dotnetEnvironment | string | `"Production"` |  |
 | dbConnection.schema | string | `"asr"` |  |
