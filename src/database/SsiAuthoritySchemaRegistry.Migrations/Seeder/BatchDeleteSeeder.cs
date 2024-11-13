@@ -46,9 +46,9 @@ public class BatchDeleteSeeder(RegistryContext context, ILogger<BatchDeleteSeede
             return;
         }
 
-        await SeedTable<Authority>("authorities", x => x.Bpn, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
-        await SeedTable<Credential>("credentials", x => x.Id, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
         await SeedTable<CredentialAuthority>("credential_authorities", x => new { x.CredentialId, x.Bpn }, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
+        await SeedTable<Credential>("credentials", x => x.Id, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
+        await SeedTable<Authority>("authorities", x => x.Bpn, cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
 
         await context.SaveChangesAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.None);
     }
