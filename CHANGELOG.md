@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.0-rc.2](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.1.0-rc.1...v1.1.0-rc.2) (2024-11-13)
+
+### Bug Fixes
+
+* **seeding:** adjust order of deletion ([562afcd](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/562afcd8b870ae1e4273508b597e0faf9389b43a)), closes [#93](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/93)
+
 ## [1.1.0-rc.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.1.0-alpha.1...v1.1.0-rc.1) (2024-11-11)
 
 ### Features
