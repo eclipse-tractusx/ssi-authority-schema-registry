@@ -55,7 +55,7 @@ _build: update readme for vx.x.x_
 
 ### 4. Update .tractusx
 
-Adjust links of the open api specifications in the .tractusx file.
+To get the latest version of the api specs build the solution once. After that adjust the links of the open api specifications in the .tractusx file.
 
 All stable releases should be listed. In case of a pre-release version (rc, alpha, etc.), only the latest one should be listed.
 
