@@ -70,6 +70,10 @@ fulfills the DCO's requirement that you sign-off on your contributions.
 For more information, please see the Eclipse Committer Handbook:
 https://www.eclipse.org/projects/handbook/#resources-commit
 
+## How To Contribute
+
+For more practical information, please refer to [Contribution details](/docs/admin/dev-process/How%20to%20contribute.md).
+
 ## Contact
 
 Contact the project developers via the project's "dev" list.
