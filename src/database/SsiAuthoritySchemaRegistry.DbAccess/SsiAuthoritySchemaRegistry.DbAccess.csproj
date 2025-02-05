@@ -22,9 +22,10 @@
   <PropertyGroup>
     <AssemblyName>Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess</AssemblyName>
     <RootNamespace>Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess</RootNamespace>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,10 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.12" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
-    <PackageReference Include="Org.Eclipse.TractusX.Portal.Backend.Framework.DependencyInjection" Version="2.17.0" />
-    <PackageReference Include="Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling" Version="2.17.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageReference Include="Org.Eclipse.TractusX.Portal.Backend.Framework.DependencyInjection" Version="3.0.0" />
+    <PackageReference Include="Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling" Version="3.0.0" />
   </ItemGroup>
 
 </Project>
