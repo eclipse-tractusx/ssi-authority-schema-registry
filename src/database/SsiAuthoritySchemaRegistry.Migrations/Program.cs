@@ -18,9 +18,11 @@
  ********************************************************************************/
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Org.Eclipse.TractusX.Portal.Backend.Framework.DBAccess;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.Logging;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.Seeding.DependencyInjection;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities;
@@ -38,7 +40,8 @@ try
                 .AddDbContext<RegistryContext>(o =>
                     o.UseNpgsql(hostContext.Configuration.GetConnectionString("RegistryDb"),
                         x => x.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name)
-                            .MigrationsHistoryTable("__efmigrations_history_authority_schema_registry", "public")))
+                            .MigrationsHistoryTable("__efmigrations_history_authority_schema_registry", "public"))
+                        .ReplaceService<IHistoryRepository, CustomNpgsqlHistoryRepository>())
                 .AddDatabaseInitializer<RegistryContext>(hostContext.Configuration.GetSection("Seeding"));
         })
         .AddLogging()
