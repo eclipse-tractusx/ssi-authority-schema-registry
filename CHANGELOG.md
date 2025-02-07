@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.2.0-rc.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.1.0-alpha.1...v1.2.0-rc.1) (2025-02-07)
+
+
+### Features
+
+* **seeding:** make authorities bpn configurable via helm chart ([020d4b7](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/020d4b742c15b119ecfe3f146d91840687ba45f7))
+* upgrade .NET to v9 ([954c526](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/954c5260f554134f5bae2b13296993e04638d506))
+
+
+### Bug Fixes
+
+* **migrations:** add custom history repository ([#123](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/123)) ([13692a1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/13692a19a32000c1792f5f52cf075eef54d5863b))
+* **seeding:** adjust order of deletion ([#94](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/94)) ([562afcd](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/562afcd8b870ae1e4273508b597e0faf9389b43a)), closes [#93](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/93)
+
+
+### Miscellaneous Chores
+
+* release 1.2.0-rc.1 ([7455f74](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/7455f74efd6c240ea86e5405805ae5c3db04230f))
+
 ## [1.1.0-rc.2](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.1.0-rc.1...v1.1.0-rc.2) (2024-11-13)
 
 ### Bug Fixes
