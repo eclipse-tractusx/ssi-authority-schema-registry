@@ -27,7 +27,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: ssi-asr
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.1.0
+    version: 1.2.0-rc.1
 ```
 
 ## Requirements
