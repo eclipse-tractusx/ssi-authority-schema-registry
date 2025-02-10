@@ -39,7 +39,7 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="JsonSchema.Net" Version="7.3.1" />
+    <PackageReference Include="JsonSchema.Net" Version="7.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
     <PackageReference Include="Org.Eclipse.TractusX.Portal.Backend.Framework.Web" Version="3.3.0" />
