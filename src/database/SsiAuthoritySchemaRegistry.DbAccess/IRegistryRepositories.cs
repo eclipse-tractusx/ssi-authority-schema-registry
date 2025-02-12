@@ -21,5 +21,5 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess;
 
 public interface IRegistryRepositories
 {
-    public T GetInstance<T>();
+    T GetInstance<T>();
 }
