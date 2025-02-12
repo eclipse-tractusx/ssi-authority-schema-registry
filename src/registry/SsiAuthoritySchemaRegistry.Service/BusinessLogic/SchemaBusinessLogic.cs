@@ -19,6 +19,7 @@
 
 using Json.Schema;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling;
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.ErrorHandling;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Models;
 using System.Reflection;
 using System.Text.Json;
@@ -32,7 +33,7 @@ public class SchemaBusinessLogic : ISchemaBusinessLogic
         var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         if (location == null)
         {
-            throw new UnexpectedConditionException("Assembly location must be set");
+            throw UnexpectedConditionException.Create(ErrorTypes.ASSEMBLY_LOCATION_NOT_SET);
         }
 
         if (schemaType is not null)
