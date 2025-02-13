@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -17,9 +17,22 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess;
+using Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling.Service;
+using System.Collections.Immutable;
 
-public interface IRegistryRepositories
+namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.ErrorHandling;
+
+public class ErrorMessageContainer : IErrorMessageContainer
 {
-    T GetInstance<T>();
+    private static readonly IReadOnlyDictionary<int, string> Messages = ImmutableDictionary.CreateRange<int, string>([
+        new((int)ErrorTypes.ASSEMBLY_LOCATION_NOT_SET, "Assembly location must be set")
+    ]);
+
+    public Type Type { get => typeof(ErrorTypes); }
+    public IReadOnlyDictionary<int, string> MessageContainer { get => Messages; }
+}
+
+public enum ErrorTypes
+{
+    ASSEMBLY_LOCATION_NOT_SET
 }

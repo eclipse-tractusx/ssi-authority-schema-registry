@@ -17,10 +17,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+using Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling.Service;
+using Org.Eclipse.TractusX.Portal.Backend.Framework.ErrorHandling.Web;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.Models.Extensions;
 using Org.Eclipse.TractusX.Portal.Backend.Framework.Web;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.DependencyInjection;
 using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Controllers;
+using Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.ErrorHandling;
 using System.Text.Json.Serialization;
 
 var version = AssemblyExtension.GetApplicationVersion();
@@ -29,6 +32,9 @@ await WebApplicationBuildRunner
     .BuildAndRunWebApplicationAsync<Program>(args, "registry", version, ".Registry",
         builder =>
         {
+            builder.Services.AddSingleton<IErrorMessageContainer, ErrorMessageContainer>();
+            builder.Services.AddSingleton<IErrorMessageService, ErrorMessageService>();
+            builder.Services.AddTransient<GeneralHttpExceptionMiddleware>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddRegistryRepositories(builder.Configuration);
             builder.Services.ConfigureHttpJsonOptions(options =>
@@ -42,6 +48,7 @@ await WebApplicationBuildRunner
         },
         (app, _) =>
         {
+            app.UseMiddleware<GeneralHttpExceptionMiddleware>();
             app.MapGroup("/api")
                 .WithOpenApi()
                 .MapRegistryApi()
