@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0-rc.2](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.2.0-rc.1...v1.2.0-rc.2) (2025-03-03)
+
+
+### Bug Fixes
+
+* **errorHandling:** adjust general error handler ([#130](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/issues/130)) ([9701404](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/970140488320978ef60430f5a8301ef0bd497725))
+
+
+### Miscellaneous Chores
+
+* release 1.2.0-rc.2 ([af2b061](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/af2b06166c5176a38614efa03a5a982896ba1782))
+
 ## [1.2.0-rc.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.1.0...v1.2.0-rc.1) (2025-02-07)
 
 

@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service
-  version: v1.2.0-rc.1
+  version: v1.2.0-rc.2
 paths:
   /api/registry/credentials:
     get:
