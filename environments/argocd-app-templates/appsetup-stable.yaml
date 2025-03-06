@@ -28,7 +28,7 @@ spec:
   source:
     path: charts/ssi-asr
     repoURL: 'https://github.com/eclipse-tractusx/ssi-authority-schema-registry.git'
-    targetRevision: ssi-asr-1.2.0-rc.2
+    targetRevision: ssi-asr-1.2.0
     plugin:
       env:
         - name: AVP_SECRET
