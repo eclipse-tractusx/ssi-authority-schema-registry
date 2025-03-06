@@ -27,33 +27,33 @@ data:
   authorities.json: |-
     [
         {
-            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
+            "did": "{{ .Values.authorities.authorityOne.did }}"
         },
         {
-            "bpn": "{{ .Values.authorities.authorityTwo.bpn }}"
+            "did": "{{ .Values.authorities.authorityTwo.did }}"
         }
     ]
   credential_authorities.json: |-
     [
         {
             "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f60",
-            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
+            "did": "{{ .Values.authorities.authorityOne.did }}"
         },
         {
             "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f61",
-            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
+            "did": "{{ .Values.authorities.authorityOne.did }}"
         },
         {
             "credential_id": "10df6ecd-faa3-45ed-8da5-96261f6542dd",
-            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
+            "did": "{{ .Values.authorities.authorityOne.did }}"
         },
         {
             "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f6b",
-            "bpn": "{{ .Values.authorities.authorityOne.bpn }}"
+            "did": "{{ .Values.authorities.authorityOne.did }}"
         },
         {
             "credential_id": "255e01fc-65f6-43cd-8dfa-95e95fa95f6b",
-            "bpn": "{{ .Values.authorities.authorityTwo.bpn }}"
+            "did": "{{ .Values.authorities.authorityTwo.did }}"
         }
     ]
 

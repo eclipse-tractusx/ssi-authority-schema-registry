@@ -19,10 +19,10 @@
 
 namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Entities.Entities;
 
-public class CredentialAuthority(Guid credentialId, string bpn)
+public class CredentialAuthority(Guid credentialId, string did)
 {
     public Guid CredentialId { get; set; } = credentialId;
-    public string Bpn { get; set; } = bpn;
+    public string Did { get; set; } = did;
 
     public virtual Credential? Credential { get; private set; }
 

@@ -14,11 +14,11 @@
 ```mermaid
 erDiagram
     AUTHORITIES {
-        text bpn PK
+        text did PK
     }
     CREDENTIAL_AUTHORITIES {
         uuid credential_id PK
-        text bpn PK
+        text did PK
     }
     CREDENTIAL_TYPES {
         integer id PK
@@ -29,7 +29,7 @@ erDiagram
         integer type_id FK
         text name
     }
-    AUTHORITIES ||--|| CREDENTIAL_AUTHORITIES : bpn
+    AUTHORITIES ||--|| CREDENTIAL_AUTHORITIES : did
     CREDENTIALS ||--|| CREDENTIAL_AUTHORITIES : credential_id
     CREDENTIALS ||--|| CREDENTIAL_TYPES : type_id
 

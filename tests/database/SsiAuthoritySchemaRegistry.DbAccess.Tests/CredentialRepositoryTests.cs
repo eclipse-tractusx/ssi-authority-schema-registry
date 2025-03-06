@@ -30,7 +30,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Tests;
 [Collection("TestDbFixture")]
 public class CredentialRepositoryTests
 {
-    private const string ValidBpnl = "BPNL00000003CRHL";
+    private const string ValidDid = "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL";
     private readonly TestDbFixture _dbTestDbFixture;
 
     public CredentialRepositoryTests(TestDbFixture testDbFixture)
@@ -69,7 +69,7 @@ public class CredentialRepositoryTests
         var sut = await CreateSut();
 
         // Act
-        var result = await sut.GetCredentials(ValidBpnl, null).ToListAsync();
+        var result = await sut.GetCredentials(ValidDid, null).ToListAsync();
 
         // Assert
         result.Should().ContainSingle().And.Satisfy(
