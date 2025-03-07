@@ -31,7 +31,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Tests.Controll
 
 public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFixture<IntegrationTestFactory>
 {
-    private const string ValidBpnl = "BPNL00000003CRHL";
+    private const string ValidDid = "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL";
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -64,7 +64,7 @@ public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFix
     public async Task GetCredentials_WithBpnFilters_ReturnsExpected()
     {
         // Act
-        var data = await _client.GetFromJsonAsync<IEnumerable<CredentialData>>($"{BaseUrl}/credentials?bpnl={ValidBpnl}", JsonOptions);
+        var data = await _client.GetFromJsonAsync<IEnumerable<CredentialData>>($"{BaseUrl}/credentials?did={ValidDid}", JsonOptions);
 
         // Assert
         data.Should().ContainSingle().And.Satisfy(

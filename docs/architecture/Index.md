@@ -11,6 +11,7 @@ This documentation follows the arc42 template to provide a comprehensive overvie
 - [08. Concepts](./08_concepts.md)
 - [10. Quality Requirements](./10_quality_requirements.md)
 - [12. Glossary](12_glossary.md)
+- [13. Migration](13_migration.md)
 
 ## NOTICE
 

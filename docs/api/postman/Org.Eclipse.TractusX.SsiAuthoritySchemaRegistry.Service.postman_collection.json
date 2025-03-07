@@ -41,7 +41,7 @@
 									"response": []
 								},
 								{
-									"name": "Gets all credentials with optional filter possibilities - With BPN Filter",
+									"name": "Gets all credentials with optional filter possibilities - With DID Filter",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -51,7 +51,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/registry/credentials?bpnl=BPNL00000003CRHL",
+											"raw": "{{baseUrl}}/api/registry/credentials?did=did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -62,8 +62,8 @@
 											],
 											"query": [
 												{
-													"key": "bpnl",
-													"value": "BPNL00000003CRHL"
+													"key": "did",
+													"value": "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL"
 												}
 											]
 										},

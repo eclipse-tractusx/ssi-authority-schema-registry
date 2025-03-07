@@ -25,5 +25,5 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.BusinessLogic;
 
 public interface IRegistryBusinessLogic : ITransient
 {
-    IAsyncEnumerable<CredentialData> GetCredentials(string? bpnl, CredentialTypeId? credentialTypeId);
+    IAsyncEnumerable<CredentialData> GetCredentials(string? did, CredentialTypeId? credentialTypeId);
 }

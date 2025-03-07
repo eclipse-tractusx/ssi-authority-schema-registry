@@ -26,7 +26,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.BusinessLogic;
 
 public class RegistryBusinessLogic(IRegistryRepositories registryRepositories) : IRegistryBusinessLogic
 {
-    public IAsyncEnumerable<CredentialData> GetCredentials(string? bpnl, CredentialTypeId? credentialTypeId) =>
+    public IAsyncEnumerable<CredentialData> GetCredentials(string? did, CredentialTypeId? credentialTypeId) =>
         registryRepositories.GetInstance<ICredentialRepository>()
-            .GetCredentials(bpnl, credentialTypeId);
+            .GetCredentials(did, credentialTypeId);
 }

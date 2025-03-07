@@ -10,9 +10,9 @@ paths:
       summary: Gets all credentials with optional filter possibilities
       description: 'Example: GET: api/registry/credentials'
       parameters:
-        - name: bpnl
+        - name: did
           in: query
-          description: 'OPTIONAL: BPNL to filter the response'
+          description: 'OPTIONAL: DID to filter the response'
           schema:
             type: string
         - name: credentialTypeId

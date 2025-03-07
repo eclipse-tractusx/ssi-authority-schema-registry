@@ -50,7 +50,7 @@ public class RegistryContext : DbContext
         modelBuilder.HasDefaultSchema("ssi-authority-schema-registry");
 
         modelBuilder.Entity<Authority>()
-            .HasKey(a => a.Bpn);
+            .HasKey(a => a.Did);
 
         modelBuilder.Entity<Credential>()
             .HasMany(c => c.Authorities)
@@ -60,7 +60,7 @@ public class RegistryContext : DbContext
 
         modelBuilder.Entity<CredentialAuthority>(e =>
         {
-            e.HasKey(ca => new { ca.CredentialId, ca.Bpn });
+            e.HasKey(ca => new { ca.CredentialId, ca.Did });
 
             e.HasOne(ca => ca.Credential)
                 .WithMany(c => c.Authorities)
@@ -69,7 +69,7 @@ public class RegistryContext : DbContext
 
             e.HasOne(ca => ca.Authority)
                 .WithMany(c => c.CredentialAuthorities)
-                .HasForeignKey(ca => ca.Bpn)
+                .HasForeignKey(ca => ca.Did)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
