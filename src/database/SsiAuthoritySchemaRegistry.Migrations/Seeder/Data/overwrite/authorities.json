@@ -1,8 +1,8 @@
 [
   {
-    "did": "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHK"
+    "did": "did:web:example.org:api:administration:staticdata:did:BPNL00000003CRHK"
   },
   {
-    "did": "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL"
+    "did": "did:web:example.org:api:administration:staticdata:did:BPNL00000003CRHL"
   }
 ]

@@ -30,7 +30,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Tests;
 [Collection("TestDbFixture")]
 public class CredentialRepositoryTests
 {
-    private const string ValidDid = "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL";
+    private const string ValidDid = "did:web:example.org:api:administration:staticdata:did:BPNL00000003CRHL";
     private readonly TestDbFixture _dbTestDbFixture;
 
     public CredentialRepositoryTests(TestDbFixture testDbFixture)

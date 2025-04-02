@@ -31,7 +31,7 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.Service.Tests.Controll
 
 public class RegistryControllerTests(IntegrationTestFactory factory) : IClassFixture<IntegrationTestFactory>
 {
-    private const string ValidDid = "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL";
+    private const string ValidDid = "did:web:example.org:api:administration:staticdata:did:BPNL00000003CRHL";
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {

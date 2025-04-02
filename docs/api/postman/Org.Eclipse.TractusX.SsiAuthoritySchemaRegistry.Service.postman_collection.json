@@ -51,7 +51,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/registry/credentials?did=did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL",
+											"raw": "{{baseUrl}}/api/registry/credentials?did=did:web:example.org:api:administration:staticdata:did:BPNL00000003CRHL",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -63,7 +63,7 @@
 											"query": [
 												{
 													"key": "did",
-													"value": "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHL"
+													"value": "did:web:example.org:api:administration:staticdata:did:BPNL00000003CRHL"
 												}
 											]
 										},
