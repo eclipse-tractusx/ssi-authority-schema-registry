@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: ['9.0.104']
+        dotnet-version: ['9.0']
 
     steps:
   
@@ -55,7 +55,7 @@ jobs:
 
       - name: List packages
         run: |
-          dotnet list src package > PACKAGES
+          dotnet list src package -v:d > PACKAGES
           cat PACKAGES
           grep --version
 
