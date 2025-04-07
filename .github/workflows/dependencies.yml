@@ -55,7 +55,7 @@ jobs:
 
       - name: List packages
         run: |
-          dotnet list --help
+          dotnet list src package > PACKAGES
           cat PACKAGES
           grep --version
 
