@@ -24,5 +24,5 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Repositories;
 
 public interface ICredentialRepository
 {
-    IAsyncEnumerable<CredentialData> GetCredentials(string? bpnl, CredentialTypeId? credentialTypeId);
+    IAsyncEnumerable<CredentialData> GetCredentials(string? did, CredentialTypeId? credentialTypeId);
 }

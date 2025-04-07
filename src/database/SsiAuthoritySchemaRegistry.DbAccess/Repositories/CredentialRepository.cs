@@ -26,11 +26,11 @@ namespace Org.Eclipse.TractusX.SsiAuthoritySchemaRegistry.DbAccess.Repositories;
 
 public class CredentialRepository(RegistryContext dbContext) : ICredentialRepository
 {
-    public IAsyncEnumerable<CredentialData> GetCredentials(string? bpnl, CredentialTypeId? credentialTypeId) =>
+    public IAsyncEnumerable<CredentialData> GetCredentials(string? did, CredentialTypeId? credentialTypeId) =>
         dbContext.Credentials
             .Where(c =>
-                (bpnl == null || c.Authorities.Select(a => a.Bpn).Contains(bpnl)) &&
+                (did == null || c.Authorities.Select(a => a.Did).Contains(did)) &&
                 (credentialTypeId == null || c.TypeId == credentialTypeId))
-            .Select(c => new CredentialData(c.Type!.Label, c.Name, c.Authorities.Select(a => a.Bpn)))
+            .Select(c => new CredentialData(c.Type!.Label, c.Name, c.Authorities.Select(a => a.Did)))
             .AsAsyncEnumerable();
 }
