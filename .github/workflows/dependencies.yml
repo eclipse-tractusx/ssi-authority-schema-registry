@@ -55,7 +55,7 @@ jobs:
 
       - name: List packages
         run: |
-          dotnet list src package --include-transitive --interactive > PACKAGES
+          dotnet list --help
           cat PACKAGES
           grep --version
 
