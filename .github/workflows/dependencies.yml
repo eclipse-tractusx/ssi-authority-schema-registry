@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: ['9.0']
+        dotnet-version: ['9.0.104']
 
     steps:
   
