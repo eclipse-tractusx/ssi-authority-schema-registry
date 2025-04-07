@@ -29,7 +29,7 @@ on:
 jobs:
   check-dependencies:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         dotnet-version: ['9.0']
