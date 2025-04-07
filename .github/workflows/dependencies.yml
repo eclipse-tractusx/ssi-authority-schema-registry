@@ -55,7 +55,7 @@ jobs:
 
       - name: List packages
         run: |
-          dotnet list src package --include-transitive --interactive | grep ">" | grep -Pv "\s(Org.Eclipse.TractusX|Microsoft|NuGet|System|runtime|docker|Docker|NETStandard)" > PACKAGES
+          dotnet list src package --include-transitive --interactive > PACKAGES
           cat PACKAGES
           grep --version
 
