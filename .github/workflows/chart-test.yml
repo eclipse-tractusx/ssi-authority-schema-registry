@@ -62,7 +62,7 @@ jobs:
 
       - name: Build migration image
         id: build-migration-image
-        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6.15.0
+        uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
         with:
           context: .
           file: ./docker/Dockerfile-registry-migrations
@@ -71,7 +71,7 @@ jobs:
 
       - name: Build service image
         id: build-service-image
-        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6.15.0
+        uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
         with:
           context: .
           file: ./docker/Dockerfile-registry-service
@@ -83,7 +83,7 @@ jobs:
         with:
           version: v3.9.3
 
-      - uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55 # v5.5.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.9'
           check-latest: true
