@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 - Copyright (c) 2024 Contributors to the Eclipse Foundation
 -
 - See the NOTICE file(s) distributed with this work for additional
@@ -30,7 +30,7 @@
 
     <ItemGroup>
       <PackageReference Include="EFCore.NamingConventions" Version="9.0.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4" />
     </ItemGroup>
 
 </Project>
