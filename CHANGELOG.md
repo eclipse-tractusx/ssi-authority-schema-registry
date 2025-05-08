@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.0.0](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.2.0-rc.2...v2.0.0) (2025-05-08)
+
+### ⚠ BREAKING CHANGES
+
+* **seeder:** change bpn to did
+
+### Features
+
+* **seeder:** change bpn to did ([3198135](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/3198135db78513c6cf68b824385890a2779ccb0c))
+
 ## [1.2.0-rc.2](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.2.0-rc.1...v1.2.0-rc.2) (2025-03-03)
 
 
