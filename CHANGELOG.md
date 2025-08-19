@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1-rc.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v2.0.0-rc.1...v2.0.1-rc.1) (2025-07-23)
+
+### Features
+
+* **dependencies:** upgrade dependencies ([4ccfae7](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/commit/4ccfae7f03478a45ee30b4be7e39d7040ead125c))
+
 ## [2.0.0-rc.1](https://github.com/eclipse-tractusx/ssi-authority-schema-registry/compare/v1.2.0-rc.2...v2.0.0-rc.1) (2025-05-08)
 
 ### ⚠ BREAKING CHANGES
